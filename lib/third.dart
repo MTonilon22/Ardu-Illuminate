@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:web_socket_channel/io.dart';
 
 class ThirdScreen extends StatefulWidget {
   const ThirdScreen({Key? key}) : super(key: key);
@@ -10,7 +11,7 @@ class ThirdScreen extends StatefulWidget {
 
 class _ThirdScreenState extends State<ThirdScreen> {
   bool light1 = false;
-  late Color activeColor = Colors.green;
+  Color activeColor = Colors.green;
   double _currentSliderValue = 20;
   bool ledstatus = false;
   late IOWebSocketChannel channel;
@@ -30,7 +31,6 @@ class _ThirdScreenState extends State<ThirdScreen> {
           IOWebSocketChannel.connect("ws://192.168.0.1:81"); //channel IP : Port
       channel.stream.listen(
         (message) {
-          print(message);
           setState(() {
             if (message == "connected") {
               connected = true; //message is "connected" from NodeMCU
@@ -55,13 +55,11 @@ class _ThirdScreenState extends State<ThirdScreen> {
   Future<void> sendcmd(String cmd) async {
     if (connected == true) {
       if (ledstatus == false && cmd != "poweron" && cmd != "poweroff") {
-        print("Send the valid command");
       } else {
         channel.sink.add(cmd); //sending Command to NodeMCU
       }
     } else {
       channelconnect();
-      print("Websocket is not connected.");
     }
   }
 

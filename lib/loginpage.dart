@@ -5,6 +5,8 @@ class LoginPage extends StatelessWidget {
   final TextEditingController userController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
+  LoginPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +32,7 @@ class LoginPage extends StatelessWidget {
                       fontFamily: 'Poppins',
                     ),
                   ),
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontFamily: 'Poppins',
                   ),
                 ),
@@ -38,7 +40,7 @@ class LoginPage extends StatelessWidget {
                 TextField(
                   controller: passwordController,
                   obscureText: true,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     prefixIcon: Icon(Icons.lock_open_rounded),
                     suffixIcon: Icon(Icons.remove_red_eye),
                     labelText: 'Password',
@@ -46,7 +48,7 @@ class LoginPage extends StatelessWidget {
                       fontFamily: 'Poppins',
                     ),
                   ),
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontFamily: 'Poppins',
                   ),
                 ),
@@ -62,7 +64,14 @@ class LoginPage extends StatelessWidget {
                       ),
                     );
                   },
-                  child: Flex(direction: Axis.horizontal, children: [
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(horizontal: 100),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    backgroundColor: const Color(0xFF0047FF),
+                  ),
+                  child: Flex(direction: Axis.horizontal, children: const [
                     Text(
                       'Login',
                       style: TextStyle(
@@ -73,13 +82,6 @@ class LoginPage extends StatelessWidget {
                     ),
                     Icon(Icons.login, color: Colors.white),
                   ]),
-                  style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.symmetric(horizontal: 100),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    primary: Color(0xFF0047FF),
-                  ),
                 ),
               ],
             ),

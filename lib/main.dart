@@ -1,4 +1,3 @@
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter/material.dart';
 import 'loginpage.dart';
 import 'first.dart';
@@ -94,7 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ],
         currentIndex: _selectedindex,
-        selectedItemColor: Color.fromARGB(255, 0, 255, 204),
+        selectedItemColor: const Color.fromARGB(255, 0, 255, 204),
         onTap: _onItemTapped,
       ),
     );
