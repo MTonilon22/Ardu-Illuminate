@@ -18,13 +18,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Ardu-Illuminate',
-      theme: ThemeData(
-          useMaterial3: true,
-          primarySwatch: Colors.grey,
-          visualDensity: VisualDensity.adaptivePlatformDensity),
-      home: LoginPage(),
-    );
+        title: 'Ardu-Illuminate',
+        theme: ThemeData(
+            useMaterial3: true,
+            primarySwatch: Colors.grey,
+            visualDensity: VisualDensity.adaptivePlatformDensity),
+        home: LoginPage());
   }
 }
 
