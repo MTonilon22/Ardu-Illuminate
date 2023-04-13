@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:ardu_illuminate/loginpage.dart';
 import 'package:ardu_illuminate/main.dart';
 import 'package:flutter/material.dart';
@@ -22,71 +24,71 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Create Account'),
+        title: const Text('Create Account'),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text(
+            const Text(
               'Full Name',
               style: TextStyle(fontSize: 16.0),
             ),
             TextField(
               controller: fullNameController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: 'Enter your full name',
               ),
             ),
-            SizedBox(height: 16.0),
-            Text(
+            const SizedBox(height: 16.0),
+            const Text(
               'Age',
               style: TextStyle(fontSize: 16.0),
             ),
             TextField(
               controller: ageController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: 'Enter your age',
               ),
               keyboardType: TextInputType.number,
             ),
-            SizedBox(height: 16.0),
-            Text(
+            const SizedBox(height: 16.0),
+            const Text(
               'Email',
               style: TextStyle(fontSize: 16.0),
             ),
             TextField(
               controller: emailController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: 'Enter your email',
               ),
               keyboardType: TextInputType.emailAddress,
             ),
-            SizedBox(height: 16.0),
-            Text(
+            const SizedBox(height: 16.0),
+            const Text(
               'Username',
               style: TextStyle(fontSize: 16.0),
             ),
             TextField(
               controller: usernameController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: 'Enter your username',
               ),
             ),
-            SizedBox(height: 16.0),
-            Text(
+            const SizedBox(height: 16.0),
+            const Text(
               'Password',
               style: TextStyle(fontSize: 16.0),
             ),
             TextField(
               controller: passwordController,
               obscureText: true,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: 'Enter your password',
               ),
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             Row(
               children: <Widget>[
                 Checkbox(
@@ -117,17 +119,17 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                   ),
                 );
               },
-              child: Text(
-                'Create Account',
-                style: TextStyle(
-                  color: Colors.white,
-                ),
-              ),
               style: ElevatedButton.styleFrom(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),
                 ),
-                primary: Color(0xFF0047FF),
+                backgroundColor: Color(0xFF0047FF),
+              ),
+              child: const Text(
+                'Create Account',
+                style: TextStyle(
+                  color: Colors.white,
+                ),
               ),
             ),
           ],
