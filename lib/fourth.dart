@@ -1,7 +1,5 @@
-/*import 'dart:async';
-
+import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'third.dart';
 
 class FourthScreen extends StatefulWidget {
@@ -14,18 +12,19 @@ class FourthScreen extends StatefulWidget {
 
 class _FourthScreenState extends State<FourthScreen> {
   TimeOfDay _time = TimeOfDay.now();
-  TimeOfDay _timee = TimeOfDay.now();
+  final TimeOfDay _timee = TimeOfDay.now();
+
+  DateTime d1 = DateTime.parse(DateTime.now().toString());
+  DateTime d2 = DateTime.parse("2018-09-12 10:57:00");
+
   TimeOfDay? picked;
-  DateTime? parsedTime;
+
   Timer? _timer;
-  int oten = 30;
-  Duration? myDuration;
-  var format = DateFormat("HH:mm:ss");
+  Duration myDuration = Duration(days: 5);
 
   void startTimer() {
-    myDuration = Duration(days: 10);
-    _timer = Timer.periodic(const Duration(seconds: 1), (_) => setCountDown());
-    print(myDuration);
+    _timer = Timer.periodic(
+        Duration(hours: _time.hour - _timee.hour), (_) => setCountDown());
   }
 
   void stopTimer() {
@@ -34,7 +33,7 @@ class _FourthScreenState extends State<FourthScreen> {
 
   void resetTimer() {
     stopTimer();
-    setState(() => myDuration = Duration(hours: _time.hour - _timee.hour));
+    setState(() => myDuration = const Duration(days: 5));
   }
 
   void setCountDown() {
@@ -67,11 +66,14 @@ class _FourthScreenState extends State<FourthScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // Duration myDuration = Duration(hours: _timee.hour - _time.hour);
     String strDigits(int n) => n.toString().padLeft(2, '0');
     final days = strDigits(myDuration.inDays);
     final hours = strDigits(myDuration.inHours.remainder(24));
     final minutes = strDigits(myDuration.inMinutes.remainder(60));
     final seconds = strDigits(myDuration.inSeconds.remainder(60));
+
+    Duration diff = d1.difference(d2);
 
     return Expanded(
       child: Column(
@@ -81,7 +83,7 @@ class _FourthScreenState extends State<FourthScreen> {
             'Timer',
             textAlign: TextAlign.left,
           ),
-          Text('$hours:$minutes:$seconds'),
+          Text('$days:$hours:$minutes:$seconds'),
           IconButton(
             iconSize: 80,
             icon: const Icon(
@@ -133,9 +135,11 @@ class _FourthScreenState extends State<FourthScreen> {
               fontSize: 40,
             ),
           ),
+          Text(
+            ("Seconds: " + diff.inSeconds.toString()),
+          ),
         ],
       ),
     );
   }
 }
-*/
