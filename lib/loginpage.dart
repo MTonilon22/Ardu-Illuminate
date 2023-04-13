@@ -1,4 +1,3 @@
-import 'package:ardu_illuminate/createAccount.dart';
 import 'package:ardu_illuminate/main.dart';
 import 'package:flutter/material.dart';
 
@@ -54,43 +53,92 @@ class LoginPage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 50),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const MyHomePage(
-                          title: '',
+                Column(
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const MyHomePage(
+                              title: '',
+                            ),
+                          ),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(horizontal: 100),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
                         ),
+                        backgroundColor: const Color(0xFF0047FF),
                       ),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(horizontal: 100),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    backgroundColor: const Color(0xFF0047FF),
-                  ),
-                  child: Flex(direction: Axis.horizontal, children: const [
-                    Text(
-                      'Login',
-                      style: TextStyle(
-                        fontSize: 25,
-                        fontFamily: 'Poppins',
-                        color: Colors.white,
+                      child: Flex(
+                        direction: Axis.horizontal,
+                        children: const [
+                          Text(
+                            'Login',
+                            style: TextStyle(
+                              fontSize: 25,
+                              fontFamily: 'Poppins',
+                              color: Colors.white,
+                            ),
+                          ),
+                          Icon(Icons.login, color: Colors.white),
+                        ],
                       ),
                     ),
-                    Icon(Icons.login, color: Colors.white),
-                  ]),
+                    const SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        const Text(
+                          'Forgot Password? ',
+                          style: TextStyle(
+                            fontFamily: 'Poppins',
+                            color: Colors.black,
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            // Add your forgot password logic here
+                          },
+                          child: const Text(
+                            'Click here',
+                            style: TextStyle(
+                              fontFamily: 'Poppins',
+                              color: Colors.blue,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 10),
+                    Column(
+                      children: [
+                        const Text(
+                          "Still don't have an account?",
+                          style: TextStyle(
+                            fontFamily: 'Poppins',
+                            color: Colors.black,
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            // Add your sign up logic here
+                          },
+                          child: const Text(
+                            'Sign-up Here!',
+                            style: TextStyle(
+                              fontFamily: 'Poppins',
+                              color: Colors.blue,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-                GestureDetector(
-                  child: const Text('Sign-up Here'),
-                  onTap: () {
-                    Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (BuildContext context) => CreateAccount()));
-                  },
-                )
               ],
             ),
           ),
