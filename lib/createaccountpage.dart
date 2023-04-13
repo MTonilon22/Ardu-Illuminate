@@ -1,3 +1,5 @@
+import 'package:ardu_illuminate/loginpage.dart';
+import 'package:ardu_illuminate/main.dart';
 import 'package:flutter/material.dart';
 
 class CreateAccountPage extends StatefulWidget {
@@ -22,7 +24,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
       appBar: AppBar(
         title: Text('Create Account'),
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -95,7 +97,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                     });
                   },
                 ),
-                Expanded(
+                const Expanded(
                   child: Text(
                     'By signing up, you agree to our Terms and Data Policy.',
                     style: TextStyle(fontSize: 16.0),
@@ -103,12 +105,24 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                 ),
               ],
             ),
-            SizedBox(height: 32.0),
+            const SizedBox(height: 32.0),
             ElevatedButton(
               onPressed: () {
-                // TODO: Add account creation logic
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => LoginPage(
+                        //title: '',
+                        ),
+                  ),
+                );
               },
-              child: Text('Create Account'),
+              child: Text(
+                'Create Account',
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
               style: ElevatedButton.styleFrom(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),
