@@ -2,12 +2,13 @@
 
 import 'package:ardu_illuminate/main.dart';
 import 'package:flutter/material.dart';
+import 'package:ardu_illuminate/loginpage.dart';
 
-class LoginPage extends StatelessWidget {
+class CreateAccount extends StatelessWidget {
   final TextEditingController userController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  LoginPage({super.key});
+  CreateAccount({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +76,7 @@ class LoginPage extends StatelessWidget {
                   ),
                   child: Flex(direction: Axis.horizontal, children: const [
                     Text(
-                      'Login',
+                      'Continue',
                       style: TextStyle(
                         fontSize: 25,
                         fontFamily: 'Poppins',

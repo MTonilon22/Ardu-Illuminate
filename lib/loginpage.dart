@@ -1,3 +1,4 @@
+import 'package:ardu_illuminate/createAccount.dart';
 import 'package:ardu_illuminate/main.dart';
 import 'package:flutter/material.dart';
 
@@ -83,6 +84,13 @@ class LoginPage extends StatelessWidget {
                     Icon(Icons.login, color: Colors.white),
                   ]),
                 ),
+                GestureDetector(
+                  child: const Text('Sign-up Here'),
+                  onTap: () {
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        builder: (BuildContext context) => CreateAccount()));
+                  },
+                )
               ],
             ),
           ),
