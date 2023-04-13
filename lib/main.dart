@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'createaccountpage.dart';
 import 'loginpage.dart';
 import 'first.dart';
 import 'second.dart';
 import 'third.dart';
-import 'fourth.dart';
+//import 'fourth.dart';
 import 'fifth.dart';
 
 void main() {
@@ -12,7 +11,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,21 +22,12 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.grey,
           visualDensity: VisualDensity.adaptivePlatformDensity),
       home: LoginPage(),
-      routes: {
-        '/login': (context) => LoginPage(),
-        '/create-account': (context) => CreateAccountPage(),
-        '/first-screen': (context) => const FirstScreen(),
-        '/second-screen': (context) => const SecondScreen(),
-        '/third-screen': (context) => const ThirdScreen(),
-        '/fourth-screen': (context) => const FourthScreen(),
-        '/fifth-screen': (context) => const FifthScreen(),
-      },
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
+  const MyHomePage({super.key, required this.title});
 
   final String title;
 
@@ -52,8 +42,9 @@ class _MyHomePageState extends State<MyHomePage> {
     const FirstScreen(),
     const SecondScreen(),
     const ThirdScreen(),
-    const FourthScreen(),
+    //const FourthScreen(),
     const FifthScreen(),
+    //const SixthScreen(),
   ];
 
   void _onItemTapped(int index) {
@@ -89,11 +80,11 @@ class _MyHomePageState extends State<MyHomePage> {
             label: "Home",
             backgroundColor: Colors.grey,
           ),
-          BottomNavigationBarItem(
+          /*BottomNavigationBarItem(
             icon: Icon(Icons.timer),
             label: "Timer",
             backgroundColor: Colors.purpleAccent,
-          ),
+          ),*/
           BottomNavigationBarItem(
             icon: Icon(Icons.gas_meter),
             label: "Energy Meter",
@@ -101,15 +92,8 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ],
         currentIndex: _selectedindex,
-        selectedItemColor: Color.fromARGB(255, 0, 255, 204),
+        selectedItemColor: const Color.fromARGB(255, 0, 255, 204),
         onTap: _onItemTapped,
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.pushNamed(context, '/create-account');
-        },
-        tooltip: 'Create Account',
-        child: Icon(Icons.person_add),
       ),
     );
   }
