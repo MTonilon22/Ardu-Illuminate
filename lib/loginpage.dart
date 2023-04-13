@@ -1,6 +1,8 @@
 import 'package:ardu_illuminate/main.dart';
 import 'package:flutter/material.dart';
 
+import 'createaccountpage.dart';
+
 class LoginPage extends StatelessWidget {
   final TextEditingController userController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -125,7 +127,12 @@ class LoginPage extends StatelessWidget {
                         ),
                         GestureDetector(
                           onTap: () {
-                            // Add your sign up logic here
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const CreateAccountPage(),
+                              ),
+                            );
                           },
                           child: const Text(
                             'Sign-up Here!',
