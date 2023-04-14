@@ -44,7 +44,6 @@ class _MyHomePageState extends State<MyHomePage> {
     const ThirdScreen(),
     const FourthScreen(),
     const FifthScreen(),
-    //const SixthScreen(),
   ];
 
   void _onItemTapped(int index) {
@@ -80,11 +79,11 @@ class _MyHomePageState extends State<MyHomePage> {
             label: "Home",
             backgroundColor: Colors.grey,
           ),
-          /*BottomNavigationBarItem(
+          BottomNavigationBarItem(
             icon: Icon(Icons.timer),
             label: "Timer",
             backgroundColor: Colors.purpleAccent,
-          ),*/
+          ),
           BottomNavigationBarItem(
             icon: Icon(Icons.gas_meter),
             label: "Energy Meter",
