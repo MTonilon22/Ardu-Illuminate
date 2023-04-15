@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:web_socket_channel/io.dart';
-import 'main.dart';
+import 'webSocket.dart';
 
 class ThirdScreen extends StatefulWidget {
   const ThirdScreen({Key? key}) : super(key: key);
@@ -15,53 +14,15 @@ class _ThirdScreenState extends State<ThirdScreen> {
   Color activeColor = Colors.green;
   double _currentSliderValue = 20;
   bool ledstatus = false;
-  late IOWebSocketChannel channel;
-  bool connected = false;
+
+  late Websocket ws = Websocket();
 
   void initstate() {
     Future.delayed(Duration.zero, () async {
-      channelconnect();
+      ws.channelconnect();
     });
 
     super.initState();
-  }
-
-  channelconnect() {
-    try {
-      channel =
-          IOWebSocketChannel.connect("ws://192.168.0.1:81"); //channel IP : Port
-      channel.stream.listen(
-        (message) {
-          setState(() {
-            if (message == "connected") {
-              connected = true; //message is "connected" from NodeMCU
-            } else if (message == "poweron:success") {
-              ledstatus = true;
-            } else if (message == "poweroff:success") {
-              ledstatus = false;
-            }
-          });
-        },
-        onDone: () {
-          //if WebSocket is disconnected
-          setState(() {
-            connected = false;
-          });
-        },
-        onError: (error) {},
-      );
-    } catch (_) {}
-  }
-
-  Future<void> sendcmd(String cmd) async {
-    if (connected == true) {
-      if (ledstatus == false && cmd != "poweron" && cmd != "poweroff") {
-      } else {
-        channel.sink.add(cmd); //sending Command to NodeMCU
-      }
-    } else {
-      channelconnect();
-    }
   }
 
   final MaterialStateProperty<Icon?> thumbIcon =
@@ -74,12 +35,12 @@ class _ThirdScreenState extends State<ThirdScreen> {
     },
   );
 
-  void _onChanged(bool value) {
+  void _onPressed(bool value) {
     if (ledstatus) {
-      sendcmd("poweroff");
+      ws.sendcmd("poweroff");
       ledstatus = false;
     } else {
-      sendcmd("poweron");
+      ws.sendcmd("poweron");
       ledstatus = true;
     }
     setState(() {
@@ -103,7 +64,7 @@ class _ThirdScreenState extends State<ThirdScreen> {
             value: light1,
             inactiveThumbColor: Colors.red,
             activeColor: activeColor,
-            onChanged: _onChanged,
+            onChanged: _onPressed,
           ),
           const Text(
             'Light Intensity',

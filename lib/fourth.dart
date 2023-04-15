@@ -22,8 +22,6 @@ class _FourthScreenState extends State<FourthScreen> {
   }
 
   void startTimer() {
-    print("IS STARTED: $isStarted");
-
     if (!isStarted) {
       countdownTimer =
           Timer.periodic(const Duration(seconds: 1), (_) => setCountDown());
