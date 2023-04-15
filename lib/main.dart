@@ -3,7 +3,7 @@ import 'loginpage.dart';
 import 'first.dart';
 import 'second.dart';
 import 'third.dart';
-//import 'fourth.dart';
+import 'fourth.dart';
 import 'fifth.dart';
 
 void main() {
@@ -38,30 +38,30 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedindex = 0;
 
+  PageController _pageController = PageController();
+
   final List<Widget> _widgetOptions = [
     const FirstScreen(),
     const SecondScreen(),
     const ThirdScreen(),
-    //const FourthScreen(),
+    const FourthScreen(),
     const FifthScreen(),
-    //const SixthScreen(),
   ];
 
   void _onItemTapped(int index) {
     setState(() {
-      _selectedindex = index;
+      // _selectedindex = index;
+      _pageController.animateToPage(index,
+          duration: const Duration(milliseconds: 300), curve: Curves.ease);
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            _widgetOptions.elementAt(_selectedindex),
-          ],
-        ),
+      body: PageView(
+        controller: _pageController,
+        children: _widgetOptions,
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
@@ -80,11 +80,11 @@ class _MyHomePageState extends State<MyHomePage> {
             label: "Home",
             backgroundColor: Colors.grey,
           ),
-          /*BottomNavigationBarItem(
+          BottomNavigationBarItem(
             icon: Icon(Icons.timer),
             label: "Timer",
             backgroundColor: Colors.purpleAccent,
-          ),*/
+          ),
           BottomNavigationBarItem(
             icon: Icon(Icons.gas_meter),
             label: "Energy Meter",

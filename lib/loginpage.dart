@@ -1,4 +1,5 @@
 import 'package:ardu_illuminate/main.dart';
+import 'package:ardu_illuminate/passwordResetpage.dart';
 import 'package:flutter/material.dart';
 
 import 'createaccountpage.dart';
@@ -54,7 +55,7 @@ class LoginPage extends StatelessWidget {
                     fontFamily: 'Poppins',
                   ),
                 ),
-                const SizedBox(height: 50),
+                const SizedBox(height: 40),
                 Column(
                   children: [
                     ElevatedButton(
@@ -90,37 +91,46 @@ class LoginPage extends StatelessWidget {
                         ],
                       ),
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 40),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         const Text(
                           'Forgot Password? ',
                           style: TextStyle(
+                            fontSize: 17,
                             fontFamily: 'Poppins',
                             color: Colors.black,
                           ),
                         ),
                         GestureDetector(
                           onTap: () {
-                            // Add your forgot password logic here
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const ResetPassword(),
+                              ),
+                            );
                           },
                           child: const Text(
                             'Click here',
                             style: TextStyle(
+                              fontSize: 17,
+                              fontWeight: FontWeight.bold,
                               fontFamily: 'Poppins',
-                              color: Colors.blue,
+                              color: Color.fromARGB(255, 2, 137, 247),
                             ),
                           ),
                         ),
                       ],
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 25),
                     Column(
                       children: [
                         const Text(
                           "Still don't have an account?",
                           style: TextStyle(
+                            fontSize: 17,
                             fontFamily: 'Poppins',
                             color: Colors.black,
                           ),
@@ -137,8 +147,10 @@ class LoginPage extends StatelessWidget {
                           child: const Text(
                             'Sign-up Here!',
                             style: TextStyle(
+                              fontSize: 17,
+                              fontWeight: FontWeight.bold,
                               fontFamily: 'Poppins',
-                              color: Colors.blue,
+                              color: Color.fromARGB(255, 3, 137, 247),
                             ),
                           ),
                         ),

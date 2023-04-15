@@ -5,7 +5,7 @@ class FirstScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return SafeArea(
       child: Column(children: const [
         Text('This is the Use Screen'),
         Text('Testing npd')

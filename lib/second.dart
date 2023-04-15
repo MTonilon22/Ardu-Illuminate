@@ -5,9 +5,11 @@ class SecondScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        children: const [Text('Main Light')],
+    return SafeArea(
+      child: Center(
+        child: Column(
+          children: const [Text('Main Light')],
+        ),
       ),
     );
   }
