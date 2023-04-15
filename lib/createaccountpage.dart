@@ -1,8 +1,5 @@
-// ignore_for_file: library_private_types_in_public_api
-
-import 'package:ardu_illuminate/loginpage.dart';
-import 'package:ardu_illuminate/main.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class CreateAccountPage extends StatefulWidget {
   const CreateAccountPage({Key? key}) : super(key: key);
@@ -13,82 +10,112 @@ class CreateAccountPage extends StatefulWidget {
 
 class _CreateAccountPageState extends State<CreateAccountPage> {
   final TextEditingController fullNameController = TextEditingController();
-  final TextEditingController ageController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-
+  DateTime? _selectedDate;
   bool _agreeToTermsAndPrivacy = false;
+
+  void _presentDatePicker() {
+    showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(1900),
+      lastDate: DateTime.now(),
+    ).then((pickedDate) {
+      if (pickedDate == null) {
+        return;
+      }
+      setState(() {
+        _selectedDate = pickedDate;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    final DateFormat dateFormat = DateFormat('MMM d, yyyy');
+    final String? selectedDateFormatted =
+        _selectedDate == null ? null : dateFormat.format(_selectedDate!);
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Create Account'),
+        title: Text('Create Account'),
       ),
-      body: SingleChildScrollView(
+      body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            const Text(
+            Text(
               'Full Name',
               style: TextStyle(fontSize: 16.0),
             ),
             TextField(
               controller: fullNameController,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 hintText: 'Enter your full name',
+                prefixIcon: Icon(Icons.person),
               ),
             ),
-            const SizedBox(height: 16.0),
-            const Text(
-              'Age',
+            SizedBox(height: 16.0),
+            Text(
+              'Birthdate',
               style: TextStyle(fontSize: 16.0),
             ),
-            TextField(
-              controller: ageController,
-              decoration: const InputDecoration(
-                hintText: 'Enter your age',
+            GestureDetector(
+              onTap: _presentDatePicker,
+              child: AbsorbPointer(
+                child: TextField(
+                  decoration: InputDecoration(
+                    hintText: 'Select your birthdate',
+                    prefixIcon: Icon(Icons.calendar_today),
+                  ),
+                  controller: TextEditingController(
+                      text: selectedDateFormatted ?? ''),
+                  keyboardType: TextInputType.datetime,
+                ),
               ),
-              keyboardType: TextInputType.number,
             ),
-            const SizedBox(height: 16.0),
-            const Text(
+            SizedBox(height: 16.0),
+            Text(
               'Email',
               style: TextStyle(fontSize: 16.0),
             ),
             TextField(
               controller: emailController,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 hintText: 'Enter your email',
+                prefixIcon: Icon(Icons.email),
               ),
               keyboardType: TextInputType.emailAddress,
             ),
-            const SizedBox(height: 16.0),
-            const Text(
+            SizedBox(height: 16.0),
+            Text(
               'Username',
               style: TextStyle(fontSize: 16.0),
             ),
             TextField(
               controller: usernameController,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 hintText: 'Enter your username',
+                prefixIcon: Icon(Icons.account_circle),
               ),
             ),
-            const SizedBox(height: 16.0),
-            const Text(
+            SizedBox(height: 16.0),
+            Text(
               'Password',
               style: TextStyle(fontSize: 16.0),
             ),
             TextField(
               controller: passwordController,
               obscureText: true,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 hintText: 'Enter your password',
+                prefixIcon: Icon(Icons.lock),
               ),
             ),
-            const SizedBox(height: 16.0),
+            SizedBox(height: 16.0),
             Row(
               children: <Widget>[
                 Checkbox(
@@ -99,7 +126,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                     });
                   },
                 ),
-                const Expanded(
+                Expanded(
                   child: Text(
                     'By signing up, you agree to our Terms and Data Policy.',
                     style: TextStyle(fontSize: 16.0),
@@ -107,29 +134,17 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                 ),
               ],
             ),
-            const SizedBox(height: 32.0),
+            SizedBox(height: 32.0),
             ElevatedButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => LoginPage(
-                        //title: '',
-                        ),
-                  ),
-                );
+                // TODO: Add account creation logic
               },
+              child: Text('Create Account'),
               style: ElevatedButton.styleFrom(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),
                 ),
-                backgroundColor: Color(0xFF0047FF),
-              ),
-              child: const Text(
-                'Create Account',
-                style: TextStyle(
-                  color: Colors.white,
-                ),
+                primary: Color(0xFF0047FF),
               ),
             ),
           ],
