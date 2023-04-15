@@ -89,7 +89,7 @@ class _ThirdScreenState extends State<ThirdScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return SafeArea(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
