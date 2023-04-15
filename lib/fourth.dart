@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'third.dart';
 import 'package:flutter/material.dart';
 import 'package:duration_picker/duration_picker.dart';
 
@@ -39,7 +38,7 @@ class _FourthScreenState extends State<FourthScreen> {
   void setCountDown() {
     const reduceSecondsBy = 1;
     setState(() {
-      final seconds = _picked!.inSeconds - reduceSecondsBy;
+      final seconds = _picked.inSeconds - reduceSecondsBy;
 
       if (seconds < 0) {
         countdownTimer!.cancel();
@@ -49,11 +48,13 @@ class _FourthScreenState extends State<FourthScreen> {
     });
   }
 
-  Future<void> durationPicked(BuildContext context) async {
+  void durationPicked(BuildContext context) async {
     _picked = (await showDurationPicker(
       context: context,
       initialTime: const Duration(minutes: 15),
     ))!;
+
+    setState(() {});
   }
 
   @override
@@ -62,60 +63,59 @@ class _FourthScreenState extends State<FourthScreen> {
     final hours = strDigits(_picked.inHours.remainder(24));
     final minutes = strDigits(_picked.inMinutes.remainder(60));
     final seconds = strDigits(_picked.inSeconds.remainder(60));
+
     return Scaffold(
       body: SafeArea(
         child: Center(
-          child: Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                ElevatedButton(
-                    onPressed: () {
-                      durationPicked(context);
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: Text('Choose Duration: $_picked'),
-                      ));
-                    },
-                    child: const Icon(Icons.timer)),
-                Text('$hours:$minutes:$seconds'),
-                const SizedBox(
-                  height: 20,
-                ),
-                ElevatedButton(
-                  onPressed: startTimer,
-                  child: const Text(
-                    'Start',
-                    style: TextStyle(
-                      fontSize: 30,
-                    ),
-                  ),
-                ),
-                ElevatedButton(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              ElevatedButton(
                   onPressed: () {
-                    if (countdownTimer == null || countdownTimer!.isActive) {
-                      stopTimer();
-                    }
+                    durationPicked(context);
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text('Choose Duration: $_picked'),
+                    ));
                   },
-                  child: const Text(
-                    'Stop',
-                    style: TextStyle(
-                      fontSize: 30,
-                    ),
+                  child: const Icon(Icons.timer)),
+              Text('$hours:$minutes:$seconds'),
+              const SizedBox(
+                height: 20,
+              ),
+              ElevatedButton(
+                onPressed: startTimer,
+                child: const Text(
+                  'Start',
+                  style: TextStyle(
+                    fontSize: 30,
                   ),
                 ),
-                ElevatedButton(
-                  onPressed: () {
-                    resetTimer();
-                  },
-                  child: const Text(
-                    'Reset',
-                    style: TextStyle(
-                      fontSize: 30,
-                    ),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  if (countdownTimer == null || countdownTimer!.isActive) {
+                    stopTimer();
+                  }
+                },
+                child: const Text(
+                  'Stop',
+                  style: TextStyle(
+                    fontSize: 30,
                   ),
                 ),
-              ],
-            ),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  resetTimer();
+                },
+                child: const Text(
+                  'Reset',
+                  style: TextStyle(
+                    fontSize: 30,
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ),

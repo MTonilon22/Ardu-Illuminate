@@ -18,51 +18,51 @@ class _ThirdScreenState extends State<ThirdScreen> {
   late IOWebSocketChannel channel;
   bool connected = false;
 
-  // void initstate() {
-  //   Future.delayed(Duration.zero, () async {
-  //     channelconnect();
-  //   });
+  void initstate() {
+    Future.delayed(Duration.zero, () async {
+      channelconnect();
+    });
 
-  //   super.initState();
-  // }
+    super.initState();
+  }
 
-  // channelconnect() {
-  //   try {
-  //     channel =
-  //         IOWebSocketChannel.connect("ws://192.168.0.1:81"); //channel IP : Port
-  //     channel.stream.listen(
-  //       (message) {
-  //         setState(() {
-  //           if (message == "connected") {
-  //             connected = true; //message is "connected" from NodeMCU
-  //           } else if (message == "poweron:success") {
-  //             ledstatus = true;
-  //           } else if (message == "poweroff:success") {
-  //             ledstatus = false;
-  //           }
-  //         });
-  //       },
-  //       onDone: () {
-  //         //if WebSocket is disconnected
-  //         setState(() {
-  //           connected = false;
-  //         });
-  //       },
-  //       onError: (error) {},
-  //     );
-  //   } catch (_) {}
-  // }
+  channelconnect() {
+    try {
+      channel =
+          IOWebSocketChannel.connect("ws://192.168.0.1:81"); //channel IP : Port
+      channel.stream.listen(
+        (message) {
+          setState(() {
+            if (message == "connected") {
+              connected = true; //message is "connected" from NodeMCU
+            } else if (message == "poweron:success") {
+              ledstatus = true;
+            } else if (message == "poweroff:success") {
+              ledstatus = false;
+            }
+          });
+        },
+        onDone: () {
+          //if WebSocket is disconnected
+          setState(() {
+            connected = false;
+          });
+        },
+        onError: (error) {},
+      );
+    } catch (_) {}
+  }
 
-  // Future<void> sendcmd(String cmd) async {
-  //   if (connected == true) {
-  //     if (ledstatus == false && cmd != "poweron" && cmd != "poweroff") {
-  //     } else {
-  //       channel.sink.add(cmd); //sending Command to NodeMCU
-  //     }
-  //   } else {
-  //     channelconnect();
-  //   }
-  // }
+  Future<void> sendcmd(String cmd) async {
+    if (connected == true) {
+      if (ledstatus == false && cmd != "poweron" && cmd != "poweroff") {
+      } else {
+        channel.sink.add(cmd); //sending Command to NodeMCU
+      }
+    } else {
+      channelconnect();
+    }
+  }
 
   final MaterialStateProperty<Icon?> thumbIcon =
       MaterialStateProperty.resolveWith<Icon?>(
