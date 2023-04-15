@@ -1,5 +1,5 @@
 import 'dart:async';
-
+import 'third.dart';
 import 'package:flutter/material.dart';
 import 'package:duration_picker/duration_picker.dart';
 
@@ -12,10 +12,10 @@ class FourthScreen extends StatefulWidget {
 }
 
 class _FourthScreenState extends State<FourthScreen> {
-  Duration? _picked;
+  Duration _picked = const Duration(hours: 0, minutes: 0);
   Timer? countdownTimer;
 
-  Duration myDuration = Duration(hours: 5);
+  // Duration myDuration = Duration(hours: 5);
 
   @override
   void initState() {
@@ -33,38 +33,35 @@ class _FourthScreenState extends State<FourthScreen> {
 
   void resetTimer() {
     stopTimer();
-    setState(() => myDuration = const Duration(hours: 0, minutes: 0));
+    setState(() => _picked = const Duration(hours: 0, minutes: 0));
   }
 
   void setCountDown() {
     const reduceSecondsBy = 1;
     setState(() {
-      final seconds = myDuration.inSeconds - reduceSecondsBy;
+      final seconds = _picked!.inSeconds - reduceSecondsBy;
 
       if (seconds < 0) {
         countdownTimer!.cancel();
       } else {
-        myDuration = Duration(seconds: seconds);
+        _picked = Duration(seconds: seconds);
       }
     });
   }
 
-  Future<Duration?> durationPicked(BuildContext context) async {
-    _picked = await showDurationPicker(
+  Future<void> durationPicked(BuildContext context) async {
+    _picked = (await showDurationPicker(
       context: context,
       initialTime: const Duration(minutes: 15),
-    );
-
-    return _picked;
+    ))!;
   }
 
   @override
   Widget build(BuildContext context) {
     String strDigits(int n) => n.toString().padLeft(2, '0');
-
-    final hours = strDigits(myDuration.inHours.remainder(24));
-    final minutes = strDigits(myDuration.inMinutes.remainder(60));
-    final seconds = strDigits(myDuration.inSeconds.remainder(60));
+    final hours = strDigits(_picked.inHours.remainder(24));
+    final minutes = strDigits(_picked.inMinutes.remainder(60));
+    final seconds = strDigits(_picked.inSeconds.remainder(60));
     return Scaffold(
       body: SafeArea(
         child: Center(

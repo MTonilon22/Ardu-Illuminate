@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:web_socket_channel/io.dart';
 import 'loginpage.dart';
 import 'first.dart';
 import 'second.dart';
@@ -37,6 +38,50 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final int _selectedindex = 0;
+  late IOWebSocketChannel channel;
+  bool connected = false;
+
+  void initstate() {
+    Future.delayed(Duration.zero, () async {
+      channelconnect();
+    });
+
+    super.initState();
+  }
+
+  channelconnect() {
+    try {
+      channel =
+          IOWebSocketChannel.connect("ws://192.168.0.1:81"); //channel IP : Port
+      channel.stream.listen(
+        (message) {
+          setState(() {
+            if (message == "connected") {
+              connected = true; //message is "connected" from NodeMCU
+            }
+          });
+        },
+        onDone: () {
+          //if WebSocket is disconnected
+          setState(() {
+            connected = false;
+          });
+        },
+        onError: (error) {},
+      );
+    } catch (_) {}
+  }
+
+  Future<void> sendcmd(String cmd) async {
+    if (connected == true) {
+      if (cmd != "poweron" && cmd != "poweroff") {
+      } else {
+        channel.sink.add(cmd); //sending Command to NodeMCU
+      }
+    } else {
+      channelconnect();
+    }
+  }
 
   final PageController _pageController = PageController();
 
