@@ -36,9 +36,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _selectedindex = 0;
+  final int _selectedindex = 0;
 
-  PageController _pageController = PageController();
+  final PageController _pageController = PageController();
 
   final List<Widget> _widgetOptions = [
     const FirstScreen(),

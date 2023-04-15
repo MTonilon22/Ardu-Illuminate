@@ -14,7 +14,8 @@ class FourthScreen extends StatefulWidget {
 class _FourthScreenState extends State<FourthScreen> {
   Duration? _picked;
   Timer? countdownTimer;
-  Duration myDuration = const Duration(days: 5);
+
+  Duration myDuration = Duration(hours: 5);
 
   @override
   void initState() {
