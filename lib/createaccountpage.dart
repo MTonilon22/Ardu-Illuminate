@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class CreateAccountPage extends StatefulWidget {
   const CreateAccountPage({Key? key}) : super(key: key);
@@ -9,15 +10,34 @@ class CreateAccountPage extends StatefulWidget {
 
 class _CreateAccountPageState extends State<CreateAccountPage> {
   final TextEditingController fullNameController = TextEditingController();
-  final TextEditingController ageController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-
+  DateTime? _selectedDate;
   bool _agreeToTermsAndPrivacy = false;
+
+  void _presentDatePicker() {
+    showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(1900),
+      lastDate: DateTime.now(),
+    ).then((pickedDate) {
+      if (pickedDate == null) {
+        return;
+      }
+      setState(() {
+        _selectedDate = pickedDate;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    final DateFormat dateFormat = DateFormat('MMM d, yyyy');
+    final String? selectedDateFormatted =
+        _selectedDate == null ? null : dateFormat.format(_selectedDate!);
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Create Account'),
@@ -35,19 +55,27 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
               controller: fullNameController,
               decoration: InputDecoration(
                 hintText: 'Enter your full name',
+                prefixIcon: Icon(Icons.person),
               ),
             ),
             SizedBox(height: 16.0),
             Text(
-              'Age',
+              'Birthdate',
               style: TextStyle(fontSize: 16.0),
             ),
-            TextField(
-              controller: ageController,
-              decoration: InputDecoration(
-                hintText: 'Enter your age',
+            GestureDetector(
+              onTap: _presentDatePicker,
+              child: AbsorbPointer(
+                child: TextField(
+                  decoration: InputDecoration(
+                    hintText: 'Select your birthdate',
+                    prefixIcon: Icon(Icons.calendar_today),
+                  ),
+                  controller: TextEditingController(
+                      text: selectedDateFormatted ?? ''),
+                  keyboardType: TextInputType.datetime,
+                ),
               ),
-              keyboardType: TextInputType.number,
             ),
             SizedBox(height: 16.0),
             Text(
@@ -58,6 +86,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
               controller: emailController,
               decoration: InputDecoration(
                 hintText: 'Enter your email',
+                prefixIcon: Icon(Icons.email),
               ),
               keyboardType: TextInputType.emailAddress,
             ),
@@ -70,6 +99,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
               controller: usernameController,
               decoration: InputDecoration(
                 hintText: 'Enter your username',
+                prefixIcon: Icon(Icons.account_circle),
               ),
             ),
             SizedBox(height: 16.0),
@@ -82,6 +112,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
               obscureText: true,
               decoration: InputDecoration(
                 hintText: 'Enter your password',
+                prefixIcon: Icon(Icons.lock),
               ),
             ),
             SizedBox(height: 16.0),
