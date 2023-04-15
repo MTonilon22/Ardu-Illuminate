@@ -13,7 +13,7 @@ class FourthScreen extends StatefulWidget {
 class _FourthScreenState extends State<FourthScreen> {
   Duration _picked = const Duration(hours: 0, minutes: 0);
   Timer? countdownTimer;
-
+  bool isStarted = false;
   // Duration myDuration = Duration(hours: 5);
 
   @override
@@ -22,12 +22,24 @@ class _FourthScreenState extends State<FourthScreen> {
   }
 
   void startTimer() {
-    countdownTimer =
-        Timer.periodic(const Duration(seconds: 1), (_) => setCountDown());
+    print("IS STARTED: $isStarted");
+
+    if (!isStarted) {
+      countdownTimer =
+          Timer.periodic(const Duration(seconds: 1), (_) => setCountDown());
+    }
+
+    setState(() {
+      isStarted = true;
+    });
   }
 
   void stopTimer() {
     setState(() => countdownTimer!.cancel());
+
+    setState(() {
+      isStarted = false;
+    });
   }
 
   void resetTimer() {
