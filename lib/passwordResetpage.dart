@@ -1,7 +1,5 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
-// ignore: unused_import
-import 'package:ardu_illuminate/loginpage.dart';
 
 class ResetPassword extends StatefulWidget {
   const ResetPassword({Key? key}) : super(key: key);
