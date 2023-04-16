@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:ardu_illuminate/webSocket.dart';
 import 'package:flutter/material.dart';
 import 'package:duration_picker/duration_picker.dart';
 
@@ -14,10 +15,14 @@ class _FourthScreenState extends State<FourthScreen> {
   Duration _picked = const Duration(hours: 0, minutes: 0);
   Timer? countdownTimer;
   bool isStarted = false;
-  // Duration myDuration = Duration(hours: 5);
+  Websocket ws = Websocket();
+  bool? ledstatus;
 
   @override
   void initState() {
+    Future.delayed(Duration.zero, () async {
+      ws.channelconnect();
+    });
     super.initState();
   }
 
@@ -52,8 +57,12 @@ class _FourthScreenState extends State<FourthScreen> {
 
       if (seconds < 0) {
         countdownTimer!.cancel();
+        ws.sendcmd("poweroff");
+        ledstatus = false;
+        print(ledstatus);
       } else {
         _picked = Duration(seconds: seconds);
+        print(_picked);
       }
     });
   }
@@ -83,9 +92,6 @@ class _FourthScreenState extends State<FourthScreen> {
               ElevatedButton(
                   onPressed: () {
                     durationPicked(context);
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      content: Text('Choose Duration: $_picked'),
-                    ));
                   },
                   child: const Icon(Icons.timer)),
               Text('$hours:$minutes:$seconds'),
