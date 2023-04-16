@@ -49,38 +49,43 @@ class _ThirdScreenState extends State<ThirdScreen> {
     });
   }
 
+  void _onSliderChanged(double value) {
+    int brightness = value.round();
+    ws.sendcmd("brightness: $brightness");
+    setState(() {
+      _currentSliderValue = value;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Text(
-            'Main Light',
-            textAlign: TextAlign.left,
-          ),
-          Switch(
-            thumbIcon: thumbIcon,
-            value: light1,
-            inactiveThumbColor: Colors.red,
-            activeColor: activeColor,
-            onChanged: _onPressed,
-          ),
-          const Text(
-            'Light Intensity',
-          ),
-          Slider(
-            value: _currentSliderValue,
-            max: 100,
-            divisions: 100,
-            label: _currentSliderValue.round().toString(),
-            onChanged: (double value) {
-              setState(() {
-                _currentSliderValue = value;
-              });
-            },
-          )
-        ],
+    return Scaffold(
+      body: SafeArea(
+        child: Column(
+          children: [
+            const Text(
+              'Main Light',
+              textAlign: TextAlign.left,
+            ),
+            Switch(
+              thumbIcon: thumbIcon,
+              value: light1,
+              inactiveThumbColor: Colors.red,
+              activeColor: activeColor,
+              onChanged: _onPressed,
+            ),
+            const Text(
+              'Light Intensity',
+            ),
+            Slider(
+              value: _currentSliderValue,
+              max: 100,
+              divisions: 100,
+              label: _currentSliderValue.round().toString(),
+              onChanged: _onSliderChanged,
+            ),
+          ],
+        ),
       ),
     );
   }
