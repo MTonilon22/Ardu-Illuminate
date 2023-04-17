@@ -1,3 +1,4 @@
+import 'package:ardu_illuminate/loginpage.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -43,7 +44,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
       appBar: AppBar(
         title: const Text('Create Account'),
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -138,7 +139,12 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
             const SizedBox(height: 32.0),
             ElevatedButton(
               onPressed: () {
-                // TODO: Add account creation logic
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => LoginPage(),
+                  ),
+                );
               },
               style: ElevatedButton.styleFrom(
                 shape: RoundedRectangleBorder(
@@ -146,7 +152,13 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                 ),
                 backgroundColor: const Color(0xFF0047FF),
               ),
-              child: const Text('Create Account'),
+              child: const Text(
+                'Create Account',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
           ],
         ),
