@@ -139,7 +139,6 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
             ElevatedButton(
               onPressed: () {
                 // TODO: Add account creation logic
-                Navigator.pushNamed(context, '/login');
               },
               style: ElevatedButton.styleFrom(
                 shape: RoundedRectangleBorder(
