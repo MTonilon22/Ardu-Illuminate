@@ -9,10 +9,10 @@ class FirstScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Profile'),
+        title: const Text('Profile'),
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -107,7 +107,14 @@ class FirstScreen extends StatelessWidget {
                       ),
                     );
                   },
-                  child: Text(
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.all(15.0),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    backgroundColor: const Color(0xFF0047FF),
+                  ),
+                  child: const Text(
                     'EDIT PROFILE',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
@@ -115,15 +122,8 @@ class FirstScreen extends StatelessWidget {
                         fontFamily: 'Poppins',
                         color: Colors.white),
                   ),
-                  style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.all(15.0),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    backgroundColor: Color(0xFF0047FF),
-                  ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 15,
                 ),
                 ElevatedButton(
@@ -135,20 +135,20 @@ class FirstScreen extends StatelessWidget {
                       ),
                     );
                   },
-                  child: Text(
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.all(15.0),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    backgroundColor: const Color(0xFF0047FF),
+                  ),
+                  child: const Text(
                     'EDIT PASSWORD',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 13,
                         fontFamily: 'Poppins',
                         color: Colors.white),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.all(15.0),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    backgroundColor: Color(0xFF0047FF),
                   ),
                 )
               ],

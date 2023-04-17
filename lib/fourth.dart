@@ -82,7 +82,6 @@ class _FourthScreenState extends State<FourthScreen> {
     final hours = strDigits(_picked.inHours.remainder(24));
     final minutes = strDigits(_picked.inMinutes.remainder(60));
     final seconds = strDigits(_picked.inSeconds.remainder(60));
-    String out = "start";
 
     return Scaffold(
       body: SafeArea(
