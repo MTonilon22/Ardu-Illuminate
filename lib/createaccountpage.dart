@@ -109,7 +109,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
               style: TextStyle(fontSize: 16.0),
             ),
             TextField(
-              controller: passwordController, 
+              controller: passwordController,
               obscureText: true,
               decoration: const InputDecoration(
                 hintText: 'Enter your password',
@@ -136,26 +136,18 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
               ],
             ),
             const SizedBox(height: 32.0),
-           ElevatedButton(
-  onPressed: () {
-    // TODO: Add account creation logic
-    Navigator.pushNamed(context, '/login');
-  },
-  style: ElevatedButton.styleFrom(
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(30),
-    ),
-    backgroundColor: const Color(0xFF0047FF),
-  ),
-  child: const Text(
-    'Create Account',
-    style: TextStyle(
-      color: Colors.white,
-      fontWeight: FontWeight.bold,
-    ),
-  ),
-),
-
+            ElevatedButton(
+              onPressed: () {
+                // TODO: Add account creation logic
+              },
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                backgroundColor: const Color(0xFF0047FF),
+              ),
+              child: const Text('Create Account'),
+            ),
           ],
         ),
       ),
