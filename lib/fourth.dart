@@ -59,10 +59,10 @@ class _FourthScreenState extends State<FourthScreen> {
         countdownTimer!.cancel();
         ws.sendcmd("poweroff");
         ledstatus = false;
-        print(ledstatus);
+        // print(ledstatus);
       } else {
         _picked = Duration(seconds: seconds);
-        print(_picked);
+        //(_picked);
       }
     });
   }
@@ -82,6 +82,7 @@ class _FourthScreenState extends State<FourthScreen> {
     final hours = strDigits(_picked.inHours.remainder(24));
     final minutes = strDigits(_picked.inMinutes.remainder(60));
     final seconds = strDigits(_picked.inSeconds.remainder(60));
+    String out = "start";
 
     return Scaffold(
       body: SafeArea(
@@ -99,12 +100,11 @@ class _FourthScreenState extends State<FourthScreen> {
                 height: 20,
               ),
               ElevatedButton(
-                onPressed: startTimer,
+                onPressed: () {
+                  startTimer();
+                },
                 child: const Text(
-                  'Start',
-                  style: TextStyle(
-                    fontSize: 30,
-                  ),
+                  "Start",
                 ),
               ),
               ElevatedButton(
@@ -114,7 +114,7 @@ class _FourthScreenState extends State<FourthScreen> {
                   }
                 },
                 child: const Text(
-                  'Stop',
+                  "Stop",
                   style: TextStyle(
                     fontSize: 30,
                   ),
