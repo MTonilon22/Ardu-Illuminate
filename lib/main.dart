@@ -19,9 +19,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Ardu-Illuminate',
       theme: ThemeData(
-        useMaterial3: true,
-        primarySwatch: Colors.grey,
-        visualDensity: VisualDensity.adaptivePlatformDensity),
+          useMaterial3: true,
+          primarySwatch: Colors.grey,
+          visualDensity: VisualDensity.adaptivePlatformDensity),
       initialRoute: '/', // Add this line to specify the initial route
       routes: {
         '/': (context) => const MyHomePage(title: 'Ardu-Illuminate'),
@@ -107,13 +107,10 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
         currentIndex: _selectedindex,
         selectedItemColor: const Color.fromARGB(255, 0, 255, 204),
-        onTap: (index) {
-          if (index == 2) {
-            _redirectToLogin();
-          } else {
-            _onItemTapped(index);
-          }
-        },
+        onTap: 
+                      _onItemTapped(index);
+          
+        
       ),
     );
   }
