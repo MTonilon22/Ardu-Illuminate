@@ -12,21 +12,17 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Ardu-Illuminate',
       theme: ThemeData(
-        useMaterial3: true,
-        primarySwatch: Colors.grey,
-        visualDensity: VisualDensity.adaptivePlatformDensity),
-      initialRoute: '/', // Add this line to specify the initial route
-      routes: {
-        '/': (context) => const MyHomePage(title: 'Ardu-Illuminate'),
-        '/login': (context) => LoginPage(),
-      }, // Add the named route for LoginPage here
+          useMaterial3: true,
+          primarySwatch: Colors.grey,
+          visualDensity: VisualDensity.adaptivePlatformDensity),
+      home: LoginPage(),
     );
   }
 }
@@ -55,19 +51,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _onItemTapped(int index) {
     setState(() {
-      _pageController.animateToPage(
-        index,
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.ease,
-      );
+      _pageController.animateToPage(index,
+          duration: const Duration(milliseconds: 300), curve: Curves.ease);
     });
-  }
-
-  // TODO: Add account creation logic
-  void _redirectToLogin() {
-    Navigator.of(context).push(
-      MaterialPageRoute(builder: (context) => LoginPage()),
-    );
   }
 
   @override
@@ -107,13 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
         currentIndex: _selectedindex,
         selectedItemColor: const Color.fromARGB(255, 0, 255, 204),
-        onTap: (index) {
-          if (index == 2) {
-            _redirectToLogin();
-          } else {
-            _onItemTapped(index);
-          }
-        },
+        onTap: _onItemTapped,
       ),
     );
   }
