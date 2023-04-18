@@ -79,19 +79,19 @@ class EditProfile extends StatelessWidget {
                       ),
                     );
                   },
-                  child: Text(
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.all(15.0),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    backgroundColor: const Color(0xFF0047FF),
+                  ),
+                  child: const Text(
                     'ACCEPT CHANGES',
                     style: TextStyle(
                         fontSize: 13,
                         fontFamily: 'Poppins',
                         color: Colors.white),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.all(15.0),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    backgroundColor: Color(0xFF0047FF),
                   ),
                 ),
               ],

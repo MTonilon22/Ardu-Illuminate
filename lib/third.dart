@@ -50,10 +50,11 @@ class _ThirdScreenState extends State<ThirdScreen> {
   }
 
   void _onSliderChanged(double value) {
-    int brightness = value.round();
-    ws.sendcmd("brightness: $brightness");
+    var brightness = value.round().toString();
+    ws.sendcmd("brightness$brightness");
     setState(() {
       _currentSliderValue = value;
+      print(brightness);
     });
   }
 

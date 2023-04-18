@@ -17,6 +17,7 @@ class _FourthScreenState extends State<FourthScreen> {
   bool isStarted = false;
   Websocket ws = Websocket();
   bool? ledstatus;
+  String out = "Start";
 
   @override
   void initState() {
@@ -34,6 +35,10 @@ class _FourthScreenState extends State<FourthScreen> {
 
     setState(() {
       isStarted = true;
+      if (isStarted) {
+        out = "Stop";
+        stopTimer();
+      }
     });
   }
 
@@ -42,6 +47,10 @@ class _FourthScreenState extends State<FourthScreen> {
 
     setState(() {
       isStarted = false;
+      if (isStarted) {
+        out = "Start";
+        startTimer();
+      }
     });
   }
 
@@ -59,10 +68,10 @@ class _FourthScreenState extends State<FourthScreen> {
         countdownTimer!.cancel();
         ws.sendcmd("poweroff");
         ledstatus = false;
-        print(ledstatus);
+        // print(ledstatus);
       } else {
         _picked = Duration(seconds: seconds);
-        print(_picked);
+        //(_picked);
       }
     });
   }
@@ -99,12 +108,13 @@ class _FourthScreenState extends State<FourthScreen> {
                 height: 20,
               ),
               ElevatedButton(
-                onPressed: startTimer,
-                child: const Text(
-                  'Start',
-                  style: TextStyle(
-                    fontSize: 30,
-                  ),
+                onPressed: () {
+                  if (countdownTimer == null || !(countdownTimer!.isActive)) {
+                    startTimer();
+                  }
+                },
+                child: Text(
+                  out,
                 ),
               ),
               ElevatedButton(
@@ -114,7 +124,7 @@ class _FourthScreenState extends State<FourthScreen> {
                   }
                 },
                 child: const Text(
-                  'Stop',
+                  "Stop",
                   style: TextStyle(
                     fontSize: 30,
                   ),
