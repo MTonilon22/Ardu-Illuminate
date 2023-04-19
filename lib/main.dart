@@ -10,12 +10,18 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Ardu-Illuminate',
       theme: ThemeData(
           useMaterial3: true,
@@ -41,11 +47,11 @@ class _MyHomePageState extends State<MyHomePage> {
   final PageController _pageController = PageController();
 
   final List<Widget> _widgetOptions = [
-    const FirstScreen(),
-    const SecondScreen(),
-    const ThirdScreen(),
-    const FourthScreen(),
-    const FifthScreen(),
+    FirstScreen(),
+    EnlighteningDetails(),
+    ThirdScreen(),
+    FourthScreen(),
+    FifthScreen(),
   ];
 
   void _onItemTapped(int index) {

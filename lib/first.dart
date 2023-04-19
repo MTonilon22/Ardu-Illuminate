@@ -1,10 +1,17 @@
 import 'package:ardu_illuminate/editPassword.dart';
-import 'package:ardu_illuminate/editprofile.dart';
+//import 'package:ardu_illuminate/editprofile.dart';
 import 'package:flutter/material.dart';
 
-class FirstScreen extends StatelessWidget {
+bool isEditProfile = false;
+
+class FirstScreen extends StatefulWidget {
   const FirstScreen({super.key});
 
+  @override
+  State<FirstScreen> createState() => _FirstScreenState();
+}
+
+class _FirstScreenState extends State<FirstScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,8 +30,8 @@ class FirstScreen extends StatelessWidget {
                   fontFamily: 'Poppins',
                   fontWeight: FontWeight.bold),
             ),
-            const TextField(
-              enabled: false,
+            TextField(
+              enabled: isEditProfile,
               decoration: InputDecoration(
                 hintText: 'Jeremy Andy Ampatin',
                 prefixIcon: Icon(Icons.person),
@@ -40,8 +47,8 @@ class FirstScreen extends StatelessWidget {
                   fontFamily: 'Poppins',
                   fontWeight: FontWeight.bold),
             ),
-            const TextField(
-              enabled: false,
+            TextField(
+              enabled: isEditProfile,
               decoration: InputDecoration(
                 hintText: 'January 69, 6969',
                 prefixIcon: Icon(Icons.calendar_today),
@@ -58,8 +65,8 @@ class FirstScreen extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const TextField(
-              enabled: false,
+            TextField(
+              enabled: isEditProfile,
               decoration: InputDecoration(
                 hintText: 'jeremyandyampatin@gmail.com',
                 prefixIcon: Icon(Icons.mark_email_read),
@@ -74,9 +81,9 @@ class FirstScreen extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const TextField(
+            TextField(
               decoration: InputDecoration(
-                enabled: false,
+                enabled: isEditProfile,
                 hintText: 'Jeremy_Andy',
                 prefixIcon: Icon(Icons.account_circle),
               ),
@@ -100,12 +107,9 @@ class FirstScreen extends StatelessWidget {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const EditProfile(),
-                      ),
-                    );
+                    setState(() {
+                      isEditProfile = true;
+                    });
                   },
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.all(15.0),

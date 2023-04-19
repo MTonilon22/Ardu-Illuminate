@@ -41,7 +41,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
     final String? selectedDateFormatted =
         _selectedDate == null ? null : dateFormat.format(_selectedDate!);
 
-     return Scaffold(
+    return Scaffold(
       appBar: AppBar(
         title: Padding(
           padding: const EdgeInsets.only(top: 40), // Add top padding here
@@ -51,12 +51,10 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
               style: TextStyle(
                 fontWeight: FontWeight.bold,
               ),
-            ),  
+            ),
           ),
         ),
       ),
-      
-      
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
