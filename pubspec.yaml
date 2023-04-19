@@ -38,6 +38,7 @@ dependencies:
   flutter_local_notifications: ^13.0.0
   web_socket_channel: ^2.4.0
   duration_picker: ^1.1.1
+  http: ^0.13.5
 
 dev_dependencies:
   flutter_test:

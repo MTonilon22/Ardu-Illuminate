@@ -15,6 +15,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+
   DateTime? _selectedDate;
   bool _agreeToTermsAndPrivacy = false;
 

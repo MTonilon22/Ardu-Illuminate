@@ -104,8 +104,8 @@ class _FourthScreenState extends State<FourthScreen> {
                     startTimer();
                   }
                 },
-                child: Text(
-                  'St@rt',
+                child: const Text(
+                  'Start',
                 ),
               ),
               ElevatedButton(

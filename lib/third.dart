@@ -53,6 +53,9 @@ class _ThirdScreenState extends State<ThirdScreen> {
     var brightness = value.round().toString();
     ws.sendcmd("brightness$brightness");
     setState(() {
+      if (ledstatus == false) {
+        brightness = value.round().toString();
+      }
       _currentSliderValue = value;
       print(brightness);
     });
