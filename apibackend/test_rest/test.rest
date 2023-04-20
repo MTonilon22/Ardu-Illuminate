@@ -1,0 +1,12 @@
+POST http://localhost:8000/api/user/oten HTTP/1.1
+Content-Type: application/json 
+
+{
+
+     "name" : "Jeremy",
+     "birthdate" :"10-04-01",
+     "email": "jeremyandyampatin@gmail.com",
+     "username": "ampats11",
+     "password" : "Jeremy123"
+}
+

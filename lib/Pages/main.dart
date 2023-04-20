@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'loginpage.dart';
-import 'first.dart';
-import 'second.dart';
-import 'settingsPage.dart';
-import 'third.dart';
-import 'fourth.dart';
-import 'fifth.dart';
+import 'package:ardu_illuminate/Pages/Account/login.dart';
+import 'package:ardu_illuminate/Pages/Screens/userProfile.dart';
+import 'package:ardu_illuminate/Pages/Screens/light_details.dart';
+import 'package:ardu_illuminate/Pages/Screens/powerConsumption.dart';
+import 'package:ardu_illuminate/Pages/Screens/homePage.dart';
+import 'package:ardu_illuminate/Pages/Screens/editprofilepage.dart';
+import 'package:ardu_illuminate/Pages/Screens/settingsPage.dart';
+import 'package:ardu_illuminate/Pages/Screens/timer.dart';
 
 void main() {
   runApp(const MyApp());
@@ -48,12 +49,10 @@ class _MyHomePageState extends State<MyHomePage> {
   final PageController _pageController = PageController();
 
   final List<Widget> _widgetOptions = [
-    
     ThirdScreen(),
     FourthScreen(),
     FifthScreen(),
     SettingsPage(),
-
   ];
 
   void _onItemTapped(int index) {
@@ -72,13 +71,13 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
-           BottomNavigationBarItem(
+          BottomNavigationBarItem(
             icon: Icon(Icons.home, color: Colors.white),
             label: "Home",
             backgroundColor: Colors.black,
           ),
           BottomNavigationBarItem(
-           icon: Icon(Icons.timer, color: Colors.white),
+            icon: Icon(Icons.timer, color: Colors.white),
             label: "Timer",
             backgroundColor: Colors.black,
           ),
