@@ -1,5 +1,5 @@
-import 'package:ardu_illuminate/main.dart';
-import 'package:ardu_illuminate/passwordResetpage.dart';
+import 'package:ardu_illuminate/Pages/main.dart';
+import 'package:ardu_illuminate/Pages/passwordResetpage.dart';
 import 'package:flutter/material.dart';
 
 import 'createaccountpage.dart';
@@ -8,6 +8,9 @@ class LoginPage extends StatelessWidget {
   final TextEditingController userController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
+  bool isAPIcallProcess = false;
+  GlobalKey<FormState> globalKey = GlobalKey<FormState>();
+
   LoginPage({super.key});
 
   @override
@@ -15,6 +18,7 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       body: SingleChildScrollView(
         child: Center(
+          key: globalKey,
           child: Padding(
             padding: const EdgeInsets.all(50.0),
             child: Column(
