@@ -1,7 +1,8 @@
 // ignore: file_names
+import 'package:ardu_illuminate/verifyCode.dart';
 import 'package:flutter/material.dart';
 
-class ResetPassword extends StatefulWidget {
+class ResetPassword extends StatefulWidget {  
   const ResetPassword({Key? key}) : super(key: key);
 
   @override
@@ -12,7 +13,7 @@ class ResetPasswordState extends State<ResetPassword> {
   final TextEditingController emailController = TextEditingController();
 
   void _sendVerificationCode() {
-    // Implement code to send verification code to the provided email
+    // Ari ra mag add if unsaon pag send sa email. Ambot saon HAHA
   }
 
   @override
@@ -51,25 +52,64 @@ class ResetPasswordState extends State<ResetPassword> {
                   ),
                 ),
                 const SizedBox(height: 50),
-                ElevatedButton(
-                  onPressed: _sendVerificationCode,
-                  style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(horizontal: 40),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
+                  ElevatedButton(
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Text('Verification Code Sent'),
+                            content: Text('Please check the 6 digit pin sent to your email.'),
+                            actions: [
+                              TextButton(
+                                onPressed: () => Navigator.pop(context),
+                                child: Text(''),
+                              ),
+                              ElevatedButton(
+                                onPressed: () {
+                                  _sendVerificationCode();
+                                  Navigator.pop(context);
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => VerifyCode(email: emailController.text),
+                                    ),
+                                  );
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Color.fromARGB(255, 0, 71, 255),
+                                ),
+                                child: const Text(
+                                  'Okay',
+                                  style: TextStyle(
+                                    fontSize: 13,
+                                    fontFamily: 'Poppins',
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(horizontal: 40),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      backgroundColor: const Color(0xFF0047FF),
                     ),
-                    backgroundColor: const Color(0xFF0047FF),
-                  ),
-                  child: const Text(
-                    'Send Code',
-                    style: TextStyle(
-                      fontSize: 25,
-                      fontFamily: 'Poppins',
-                      color: Colors.white,
+                    child: const Text(
+                      'Send Code',
+                      style: TextStyle(
+                        fontSize: 25,
+                        fontFamily: 'Poppins',
+                        color: Colors.white,
+                      ),
                     ),
                   ),
-                ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 15),
               ],
             ),
           ),
