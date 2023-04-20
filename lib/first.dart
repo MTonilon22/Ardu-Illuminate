@@ -1,4 +1,6 @@
 import 'package:ardu_illuminate/editPassword.dart';
+//import 'package:ardu_illuminate/passwordResetpage.dart';
+import 'package:ardu_illuminate/editprofilepage.dart';
 //import 'package:ardu_illuminate/editprofile.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +21,7 @@ class _FirstScreenState extends State<FirstScreen> {
         title: const Text('Profile'),
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(30),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -32,7 +34,7 @@ class _FirstScreenState extends State<FirstScreen> {
             ),
             TextField(
               enabled: isEditProfile,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: 'Jeremy Andy Ampatin',
                 prefixIcon: Icon(Icons.person),
               ),
@@ -49,7 +51,7 @@ class _FirstScreenState extends State<FirstScreen> {
             ),
             TextField(
               enabled: isEditProfile,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: 'January 69, 6969',
                 prefixIcon: Icon(Icons.calendar_today),
               ),
@@ -67,7 +69,7 @@ class _FirstScreenState extends State<FirstScreen> {
             ),
             TextField(
               enabled: isEditProfile,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: 'jeremyandyampatin@gmail.com',
                 prefixIcon: Icon(Icons.mark_email_read),
               ),
@@ -85,7 +87,7 @@ class _FirstScreenState extends State<FirstScreen> {
               decoration: InputDecoration(
                 enabled: isEditProfile,
                 hintText: 'Jeremy_Andy',
-                prefixIcon: Icon(Icons.account_circle),
+                prefixIcon: const Icon(Icons.account_circle),
               ),
             ),
             const SizedBox(height: 16),
@@ -107,9 +109,43 @@ class _FirstScreenState extends State<FirstScreen> {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    setState(() {
-                      isEditProfile = true;
-                    });
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: const Text(
+                              'Credentials Update?',
+                              style: TextStyle(
+                                  color: Color(0xFF0047FF),
+                                  fontFamily: 'Poppins',
+                                  fontSize: 16),
+                            ),
+                            content: const Text(
+                                'Do you want to update credentials?'),
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  setState(() {
+                                    isEditProfile = false;
+                                  });
+                                  Navigator.pop(context);
+                                },
+                                child: const Text('Cancel'),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            const EditProfile(),
+                                      ));
+                                },
+                                child: const Text('Continue'),
+                              )
+                            ],
+                          );
+                        });
                   },
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.all(15.0),
@@ -132,12 +168,41 @@ class _FirstScreenState extends State<FirstScreen> {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const EditPassword(),
-                      ),
-                    );
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: const Text(
+                              'RESET PASSWORD',
+                              style: TextStyle(
+                                  color: Color(0xFF0047FF),
+                                  fontFamily: 'Poppins',
+                                  fontSize: 16),
+                            ),
+                            content: const Text('Reset Password?'),
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const EditPassword(),
+                                    ),
+                                  );
+                                },
+                                child: const Text('CONTINUE'),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  //logic here when pressing the cancel button
+                                  Navigator.pop(context);
+                                },
+                                child: const Text('CANCEL'),
+                              ),
+                            ],
+                          );
+                        });
                   },
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.all(15.0),
