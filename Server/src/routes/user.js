@@ -30,10 +30,10 @@ router.get('/user/:id', (req,res) => {
 })
 
 router.post('/user', (req,res) => {
-    const {user_id, name, birthdate, email, username, password,randomstr,hash} = req.body;
+    const {user_id, name, birthdate, email, username, password} = req.body;
     console.log(req.body);
-    mysqlConnection.query('insert into users(user_id,name,birthdate,email,username,password,randomstr,hash) values(?,?,?,?,?,?,?,?);',
-    [user_id,name,birthdate,email,username,password,randomstr,hash], (error,rows,fields) => {
+    mysqlConnection.query('insert into users(user_id,name,birthdate,email,username,password) values(?,?,?,?,?,?);',
+    [user_id,name,birthdate,email,username,password], (error,rows,fields) => {
         if(!error){
             res.json({Status: 'User saved'});
         }else{
@@ -43,9 +43,9 @@ router.post('/user', (req,res) => {
 });
 
 router.put('/user/:id', (req,res) => {
-    const {user_id, name, birthdate, email, username, password, randomstr, hash} = req.body;
+    const {user_id, name, birthdate, email, username, password} = req.body;
     console.log(req.body); 
-    mysqlConnection.query ('update user set name = ?, birthdate =?, email = ?, username = ?, password = ?, randomstr = ?, hash = ? where id = ? ;',
+    mysqlConnection.query ('update user set name = ?, birthdate =?, email = ?, username = ?, password = ? where id = ? ;',
     [name,birthdate,email,username,password,randomstr,hash, user_id], (error,rows,fields) => {
         if(!error){
             res.json({Status: 'User updated'});

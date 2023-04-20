@@ -2,12 +2,17 @@ const mysql = require('mysql');
 
 const mysqlConnection = mysql.createConnection({
 
+    connectionLimit: 100,
     host: 'localhost',
     user: 'root',
     password: 'Jeremy123',
-    databases: 'ardudb'
+    databases: 'ardudb',
+    debug: false,
+    port: 3306, 
+
 });
 
+const db = mysql.createPool(mysqlConnection);
 mysqlConnection.connect(function (error){
 
     if(error){
@@ -18,4 +23,6 @@ mysqlConnection.connect(function (error){
     }
 });
 
-module.exports = mysqlConnection;
+module.exports =  {
+    db,
+};
