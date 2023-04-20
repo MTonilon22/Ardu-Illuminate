@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ardu_illuminate/Pages/Socket/webSocket.dart';
+import 'package:ardu_illuminate/Socket/webSocket.dart';
 
 class ThirdScreen extends StatefulWidget {
   const ThirdScreen({Key? key}) : super(key: key);

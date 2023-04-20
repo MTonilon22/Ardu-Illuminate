@@ -3,10 +3,10 @@ Content-Type: application/json
 
 {
 
-     "name" : "Jeremy",
-     "birthdate" :"10-04-01",
+     "name" : "Jeremy Andy F. Ampatin",
+     "birthdate" :"October 04, 2001",
      "email": "jeremyandyampatin@gmail.com",
-     "username": "ampats11",
-     "password" : "Jeremy123"
+     "username": "ampatin123",
+     "password" : "09153569802"
 }
 

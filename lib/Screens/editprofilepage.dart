@@ -1,5 +1,5 @@
 //import 'package:ardu_illuminate/editPassword.dart';
-import 'package:ardu_illuminate/Pages/Screens/userProfile.dart';
+import 'package:ardu_illuminate/Screens/userProfile.dart';
 //import 'package:ardu_illuminate/passwordResetpage.dart';
 //import 'package:ardu_illuminate/editprofile.dart';
 import 'package:flutter/material.dart';

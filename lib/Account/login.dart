@@ -1,5 +1,5 @@
-import 'package:ardu_illuminate/Pages/main.dart';
-import 'package:ardu_illuminate/Pages/Account/passReset.dart';
+import 'package:ardu_illuminate/main.dart';
+import 'package:ardu_illuminate/Account/passReset.dart';
 import 'package:flutter/material.dart';
 import 'createAcc.dart';
 

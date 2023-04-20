@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:ardu_illuminate/Pages/Account/login.dart';
-import 'package:ardu_illuminate/Pages/Screens/userProfile.dart';
-import 'package:ardu_illuminate/Pages/Screens/light_details.dart';
-import 'package:ardu_illuminate/Pages/Screens/powerConsumption.dart';
-import 'package:ardu_illuminate/Pages/Screens/homePage.dart';
-import 'package:ardu_illuminate/Pages/Screens/editprofilepage.dart';
-import 'package:ardu_illuminate/Pages/Screens/settingsPage.dart';
-import 'package:ardu_illuminate/Pages/Screens/timer.dart';
+import 'package:ardu_illuminate/Account/login.dart';
+import 'package:ardu_illuminate/Screens/userProfile.dart';
+import 'package:ardu_illuminate/Screens/light_details.dart';
+import 'package:ardu_illuminate/Screens/powerConsumption.dart';
+import 'package:ardu_illuminate/Screens/homePage.dart';
+import 'package:ardu_illuminate/Screens/editprofilepage.dart';
+import 'package:ardu_illuminate/Screens/settingsPage.dart';
+import 'package:ardu_illuminate/Screens/timer.dart';
 
 void main() {
   runApp(const MyApp());
@@ -49,10 +49,10 @@ class _MyHomePageState extends State<MyHomePage> {
   final PageController _pageController = PageController();
 
   final List<Widget> _widgetOptions = [
-    ThirdScreen(),
-    FourthScreen(),
-    FifthScreen(),
-    SettingsPage(),
+    const ThirdScreen(),
+    const FourthScreen(),
+    const FifthScreen(),
+    const SettingsPage(),
   ];
 
   void _onItemTapped(int index) {

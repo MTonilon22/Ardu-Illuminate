@@ -1,8 +1,8 @@
 //import 'package:ardu_illuminate/passwordResetpage.dart';
-import 'package:ardu_illuminate/Pages/Screens/editprofilepage.dart';
+import 'package:ardu_illuminate/Screens/editprofilepage.dart';
 //import 'package:ardu_illuminate/editprofile.dart';
 import 'package:flutter/material.dart';
-import 'package:ardu_illuminate/Pages/Account/editPass.dart';
+import 'package:ardu_illuminate/Account/editPass.dart';
 
 bool isEditProfile = false;
 
