@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'loginpage.dart';
 import 'first.dart';
 import 'second.dart';
+import 'settingsPage.dart';
 import 'third.dart';
 import 'fourth.dart';
 import 'fifth.dart';
@@ -47,11 +48,12 @@ class _MyHomePageState extends State<MyHomePage> {
   final PageController _pageController = PageController();
 
   final List<Widget> _widgetOptions = [
-    FirstScreen(),
-    EnlighteningDetails(),
+    
     ThirdScreen(),
     FourthScreen(),
     FifthScreen(),
+    SettingsPage(),
+
   ];
 
   void _onItemTapped(int index) {
@@ -70,30 +72,25 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.verified_user_rounded),
-            label: "User",
-            backgroundColor: Colors.red,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.lightbulb),
-            label: "Light",
-            backgroundColor: Colors.blueAccent,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+           BottomNavigationBarItem(
+            icon: Icon(Icons.home, color: Colors.white),
             label: "Home",
-            backgroundColor: Colors.grey,
+            backgroundColor: Colors.black,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.timer),
+           icon: Icon(Icons.timer, color: Colors.white),
             label: "Timer",
-            backgroundColor: Colors.purpleAccent,
+            backgroundColor: Colors.black,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.gas_meter),
-            label: "Energy Meter",
-            backgroundColor: Colors.orange,
+            icon: Icon(Icons.lightbulb, color: Colors.white),
+            label: "Power",
+            backgroundColor: Colors.black,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings, color: Colors.white),
+            label: "User",
+            backgroundColor: Colors.black,
           ),
         ],
         currentIndex: _selectedindex,
