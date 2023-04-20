@@ -43,9 +43,9 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Padding(
-          padding: const EdgeInsets.only(top: 40), // Add top padding here
-          child: const Center(
+        title: const Padding(
+          padding: EdgeInsets.only(top: 40), // Add top padding here
+          child: Center(
             child: Text(
               'Create Account',
               style: TextStyle(

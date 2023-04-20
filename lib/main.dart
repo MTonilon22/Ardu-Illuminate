@@ -47,11 +47,11 @@ class _MyHomePageState extends State<MyHomePage> {
   final PageController _pageController = PageController();
 
   final List<Widget> _widgetOptions = [
-    FirstScreen(),
-    EnlighteningDetails(),
-    ThirdScreen(),
-    FourthScreen(),
-    FifthScreen(),
+    const FirstScreen(),
+    const EnlighteningDetails(),
+    const ThirdScreen(),
+    const FourthScreen(),
+    const FifthScreen(),
   ];
 
   void _onItemTapped(int index) {
