@@ -1,8 +1,11 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:ardu_illuminate/Account/editPass.dart';
-import 'package:ardu_illuminate/Account/login.dart';
 import 'package:ardu_illuminate/Screens/light_details.dart';
 import 'package:ardu_illuminate/Screens/userProfile.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:ardu_illuminate/Authentication/auth.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -13,6 +16,12 @@ class SettingsPage extends StatefulWidget {
 
 class _SettingsPageState extends State<SettingsPage> {
   bool _darkMode = false;
+
+  final User? user = Auth().currentUser;
+
+  Future<void> signOut() async {
+    await FirebaseAuth.instance.signOut();
+  }
 
   void _logout(BuildContext context) {
     // ari mag butang sa logic pag log out sa user
@@ -168,12 +177,7 @@ class _SettingsPageState extends State<SettingsPage> {
                                       ),
                                       TextButton(
                                         onPressed: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    LoginPage(),
-                                              ));
+                                          FirebaseAuth.instance.signOut();
                                         },
                                         child: const Text('Continue'),
                                       )

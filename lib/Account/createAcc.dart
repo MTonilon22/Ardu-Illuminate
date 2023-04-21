@@ -1,6 +1,8 @@
 import 'package:ardu_illuminate/Account/login.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:ardu_illuminate/Authentication/auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class CreateAccountPage extends StatefulWidget {
   const CreateAccountPage({Key? key}) : super(key: key);
@@ -15,6 +17,21 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  String? errorMessage = '';
+  bool isLogin = true;
+
+  Future createAcc() async {
+    try {
+      await Auth().createUserWithEmailAndPassword(
+        email: emailController.text,
+        password: passwordController.text,
+      );
+    } on FirebaseAuthException catch (e) {
+      setState(() {
+        errorMessage = e.message;
+      });
+    }
+  }
 
   DateTime? _selectedDate;
   bool _agreeToTermsAndPrivacy = false;
@@ -150,10 +167,11 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
             const SizedBox(height: 32.0),
             ElevatedButton(
               onPressed: () {
+                createAcc();
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => LoginPage(),
+                    builder: (context) => const LoginPage(),
                   ),
                 );
               },

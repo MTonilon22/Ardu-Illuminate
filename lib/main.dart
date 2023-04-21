@@ -1,26 +1,17 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:ardu_illuminate/Account/login.dart';
-import 'package:ardu_illuminate/Screens/userProfile.dart';
-import 'package:ardu_illuminate/Screens/light_details.dart';
-import 'package:ardu_illuminate/Screens/powerConsumption.dart';
-import 'package:ardu_illuminate/Screens/homePage.dart';
-import 'package:ardu_illuminate/Screens/editprofilepage.dart';
-import 'package:ardu_illuminate/Screens/settingsPage.dart';
-import 'package:ardu_illuminate/Screens/timer.dart';
+import 'package:ardu_illuminate/Authentication/widget_tree.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -49,75 +40,9 @@ class _MyAppState extends State<MyApp> {
             ),
             duration: 1000,
             splashTransition: SplashTransition.sizeTransition,
-            nextScreen: LoginPage(),
+            nextScreen: const WidgetTree(),
           );
         },
-      ),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  final int _selectedindex = 0;
-
-  final PageController _pageController = PageController();
-
-  final List<Widget> _widgetOptions = [
-    const ThirdScreen(),
-    const FourthScreen(),
-    const FifthScreen(),
-    const SettingsPage(),
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _pageController.animateToPage(index,
-          duration: const Duration(milliseconds: 300), curve: Curves.ease);
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: PageView(
-        controller: _pageController,
-        children: _widgetOptions,
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home, color: Colors.white),
-            label: "Home",
-            backgroundColor: Colors.black,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.timer, color: Colors.white),
-            label: "Timer",
-            backgroundColor: Colors.black,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.lightbulb, color: Colors.white),
-            label: "Power",
-            backgroundColor: Colors.black,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings, color: Colors.white),
-            label: "User",
-            backgroundColor: Colors.black,
-          ),
-        ],
-        currentIndex: _selectedindex,
-        selectedItemColor: const Color.fromARGB(255, 0, 255, 204),
-        onTap: _onItemTapped,
       ),
     );
   }

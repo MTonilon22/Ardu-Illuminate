@@ -13,7 +13,7 @@ app.use(express.json());
 app.use("/",userPost)
 
 app.get('/', (req,res) => {
-    res.send({"username":"ampats11", "password":"Jeremy123", })
+    res.send({"message": "welcome", })
 })
 
 //Starting the server

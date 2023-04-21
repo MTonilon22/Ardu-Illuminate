@@ -15,6 +15,10 @@ const userModel = {}
     return id;
     }
 
+    userModel.findById = (id, result) => {
+        console.log("The id is", id);
+    }
+
 
 
     module.exports = userModel

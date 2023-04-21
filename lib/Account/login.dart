@@ -1,23 +1,50 @@
-import 'package:ardu_illuminate/main.dart';
 import 'package:ardu_illuminate/Account/passReset.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'createAcc.dart';
 
-class LoginPage extends StatelessWidget {
-  final TextEditingController userController = TextEditingController();
+class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
+
+  @override
+
+  // ignore: library_private_types_in_public_api
+  _LoginPageState createState() => _LoginPageState();
+}
+
+// ignore: must_be_immutable
+class _LoginPageState extends State<LoginPage> {
+  String? errorMessage = '';
+  bool isLogin = true;
+  final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  bool isAPIcallProcess = false;
-  GlobalKey<FormState> globalKey = GlobalKey<FormState>();
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
 
-  LoginPage({super.key});
+    super.dispose();
+  }
+
+  Future signIn() async {
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
+      );
+    } on FirebaseAuthException catch (e) {
+      setState(() {
+        errorMessage = e.message;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
         child: Center(
-          key: globalKey,
           child: Padding(
             padding: const EdgeInsets.all(50.0),
             child: Column(
@@ -30,7 +57,7 @@ class LoginPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 15),
                 TextField(
-                  controller: userController,
+                  controller: emailController,
                   decoration: const InputDecoration(
                     prefixIcon: Icon(Icons.perm_identity_sharp),
                     labelText: 'Username',
@@ -62,16 +89,7 @@ class LoginPage extends StatelessWidget {
                 Column(
                   children: [
                     ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const MyHomePage(
-                              title: '',
-                            ),
-                          ),
-                        );
-                      },
+                      onPressed: signIn,
                       style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(horizontal: 100),
                         shape: RoundedRectangleBorder(
@@ -85,7 +103,7 @@ class LoginPage extends StatelessWidget {
                           Text(
                             'Login',
                             style: TextStyle(
-                              fontSize: 25,
+                              fontSize: 20,
                               fontFamily: 'Poppins',
                               color: Colors.white,
                             ),

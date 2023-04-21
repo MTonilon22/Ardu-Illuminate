@@ -1,95 +1,68 @@
+// ignore_for_file: library_private_types_in_public_api
 import 'package:flutter/material.dart';
-import 'package:ardu_illuminate/Socket/webSocket.dart';
+import 'package:ardu_illuminate/Screens/powerConsumption.dart';
+import 'package:ardu_illuminate/Screens/settingsPage.dart';
+import 'package:ardu_illuminate/Screens/timer.dart';
+import './mainPage.dart';
 
-class ThirdScreen extends StatefulWidget {
-  const ThirdScreen({Key? key}) : super(key: key);
-
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
   @override
-  // ignore: library_private_types_in_public_api
-  _ThirdScreenState createState() => _ThirdScreenState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _ThirdScreenState extends State<ThirdScreen> {
-  bool light1 = false;
-  Color activeColor = Colors.green;
-  double _currentSliderValue = 20;
-  bool ledstatus = false;
+class _HomePageState extends State<HomePage> {
+  final int _selectedindex = 0;
 
-  late Websocket ws = Websocket();
+  final PageController _pageController = PageController();
 
-  void initstate() {
-    Future.delayed(Duration.zero, () async {
-      ws.channelconnect();
-    });
+  final List<Widget> _widgetOptions = [
+    const MainPage(),
+    const FourthScreen(),
+    const FifthScreen(),
+    const SettingsPage(),
+  ];
 
-    super.initState();
-  }
-
-  final MaterialStateProperty<Icon?> thumbIcon =
-      MaterialStateProperty.resolveWith<Icon?>(
-    (Set<MaterialState> states) {
-      if (states.contains(MaterialState.selected)) {
-        return const Icon(Icons.check);
-      }
-      return const Icon(Icons.close);
-    },
-  );
-
-  void _onPressed(bool value) {
-    if (ledstatus) {
-      ws.sendcmd("poweroff");
-      ledstatus = false;
-    } else {
-      ws.sendcmd("poweron");
-      ledstatus = true;
-    }
+  void _onItemTapped(int index) {
     setState(() {
-      light1 = value;
-      activeColor = value ? Colors.green : Colors.red;
-    });
-  }
-
-  void _onSliderChanged(double value) {
-    var brightness = value.round().toString();
-    ws.sendcmd("brightness$brightness");
-    setState(() {
-      if (ledstatus == false) {
-        brightness = value.round().toString();
-      }
-      _currentSliderValue = value;
-      print(brightness);
+      _pageController.animateToPage(index,
+          duration: const Duration(milliseconds: 300), curve: Curves.ease);
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            const Text(
-              'Main Light',
-              textAlign: TextAlign.left,
-            ),
-            Switch(
-              thumbIcon: thumbIcon,
-              value: light1,
-              inactiveThumbColor: Colors.red,
-              activeColor: activeColor,
-              onChanged: _onPressed,
-            ),
-            const Text(
-              'Light Intensity',
-            ),
-            Slider(
-              value: _currentSliderValue,
-              max: 100,
-              divisions: 100,
-              label: _currentSliderValue.round().toString(),
-              onChanged: _onSliderChanged,
-            ),
-          ],
-        ),
+      body: PageView(
+        controller: _pageController,
+        children: _widgetOptions,
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home, color: Colors.white),
+            label: "Home",
+            backgroundColor: Colors.black,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.timer, color: Colors.white),
+            label: "Timer",
+            backgroundColor: Colors.black,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.lightbulb, color: Colors.white),
+            label: "Power",
+            backgroundColor: Colors.black,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings, color: Colors.white),
+            label: "User",
+            backgroundColor: Colors.black,
+          ),
+        ],
+        currentIndex: _selectedindex,
+        selectedItemColor: const Color.fromARGB(255, 0, 255, 204),
+        onTap: _onItemTapped,
       ),
     );
   }
