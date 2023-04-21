@@ -1,3 +1,4 @@
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:ardu_illuminate/Account/login.dart';
 import 'package:ardu_illuminate/Screens/userProfile.dart';
@@ -24,12 +25,34 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Ardu-Illuminate',
       theme: ThemeData(
           useMaterial3: true,
           primarySwatch: Colors.grey,
           visualDensity: VisualDensity.adaptivePlatformDensity),
-      home: LoginPage(),
+      home: Builder(
+        builder: (BuildContext context) {
+          return AnimatedSplashScreen(
+            splash: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Center(
+                  child: SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.2,
+                    child: Center(
+                      child: Image.asset(
+                        "assets/ardu-ulliminate.png",
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            duration: 3000,
+            splashTransition: SplashTransition.sizeTransition,
+            nextScreen: LoginPage(),
+          );
+        },
+      ),
     );
   }
 }
