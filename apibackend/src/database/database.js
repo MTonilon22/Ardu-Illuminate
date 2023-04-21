@@ -14,8 +14,8 @@ const mysqlConnection = mysql.createConnection({
 mysqlConnection.connect(function (error){
 
     if(error){
-       throw error
-       return;
+        console.error('error connecting: ' + err.stack);
+        return;
     }else{
         console.log('Database is connected');
     }

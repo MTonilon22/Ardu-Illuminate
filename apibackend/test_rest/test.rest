@@ -3,10 +3,10 @@ Content-Type: application/json
 
 {
 
-     "name" : "Jeremy Andy F. Ampatin",
-     "birthdate" :"October 04, 2001",
-     "email": "jeremyandyampatin@gmail.com",
-     "username": "ampatin123",
-     "password" : "09153569802"
+     "name" : "Michael Oliva Tonilon",
+     "birthdate" :"October 69, 2001",
+     "email": "mtonilon@oten.com",
+     "username": "otin123",
+     "password" : "oten123"
 }
 
