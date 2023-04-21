@@ -166,60 +166,6 @@ class _FirstScreenState extends State<FirstScreen> {
                 const SizedBox(
                   width: 15,
                 ),
-                ElevatedButton(
-                  onPressed: () {
-                    showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return AlertDialog(
-                            title: const Text(
-                              'RESET PASSWORD',
-                              style: TextStyle(
-                                  color: Color(0xFF0047FF),
-                                  fontFamily: 'Poppins',
-                                  fontSize: 16),
-                            ),
-                            content: const Text('Reset Password?'),
-                            actions: [
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          const EditPassword(),
-                                    ),
-                                  );
-                                },
-                                child: const Text('CONTINUE'),
-                              ),
-                              TextButton(
-                                onPressed: () {
-                                  //logic here when pressing the cancel button
-                                  Navigator.pop(context);
-                                },
-                                child: const Text('CANCEL'),
-                              ),
-                            ],
-                          );
-                        });
-                  },
-                  style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.all(15.0),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    backgroundColor: const Color(0xFF0047FF),
-                  ),
-                  child: const Text(
-                    'EDIT PASSWORD',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 13,
-                        fontFamily: 'Poppins',
-                        color: Colors.white),
-                  ),
-                )
               ],
             ),
           ],

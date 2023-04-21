@@ -1,3 +1,7 @@
+import 'package:ardu_illuminate/Account/editPass.dart';
+import 'package:ardu_illuminate/Account/login.dart';
+import 'package:ardu_illuminate/Screens/light_details.dart';
+import 'package:ardu_illuminate/Screens/userProfile.dart';
 import 'package:flutter/material.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -11,19 +15,17 @@ class _SettingsPageState extends State<SettingsPage> {
   bool _darkMode = false;
 
   void _logout(BuildContext context) {
-    // Implement code to logout the user
+    // ari mag butang sa logic pag log out sa user
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: _darkMode
-          ? ThemeData.dark()
-          : ThemeData.light(), // Modify the theme based on _darkMode value
+      theme: _darkMode ? ThemeData.dark() : ThemeData.light(),
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Settings'),
+          title: const Text(''),
         ),
         body: SingleChildScrollView(
           child: Center(
@@ -34,7 +36,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 children: <Widget>[
                   const SizedBox(height: 5),
                   const Text(
-                    'Profile',
+                    'SETTINGS',
                     style: TextStyle(
                       fontFamily: 'Poppins',
                       fontSize: 20,
@@ -42,8 +44,6 @@ class _SettingsPageState extends State<SettingsPage> {
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 50),
-
-                  // Add profile settings here
                   Card(
                     child: Column(
                       children: [
@@ -68,77 +68,126 @@ class _SettingsPageState extends State<SettingsPage> {
                         const Divider(),
                         ListTile(
                           title: const Text(
-                            'Name',
-                            style: TextStyle(fontFamily: 'Poppins'),
-                          ),
-                          subtitle: const Text(
-                            'Jeremy Andy',
-                            style: TextStyle(fontFamily: 'Poppins'),
+                            'View Profile',
+                            style:
+                                TextStyle(fontFamily: 'Poppins', fontSize: 16),
                           ),
                           trailing: IconButton(
-                            icon: const Icon(Icons.edit_square),
+                            icon: const Icon(Icons.list),
                             onPressed: () {
-                              // Implement code to edit name
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const FirstScreen()));
                             },
                           ),
                         ),
                         const Divider(),
                         ListTile(
                           title: const Text(
-                            'Email',
-                            style: TextStyle(fontFamily: 'Poppins'),
-                          ),
-                          subtitle: const Text(
-                            'jeremyandyampatin@gmail.com',
-                            style: TextStyle(fontFamily: 'Poppins'),
+                            'Enlightening Details',
+                            style:
+                                TextStyle(fontFamily: 'Poppins', fontSize: 16),
                           ),
                           trailing: IconButton(
-                            icon: const Icon(Icons.edit_square),
+                            icon: const Icon(Icons.lightbulb),
                             onPressed: () {
-                              // Implement code to edit email
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const EnlighteningDetails()));
                             },
                           ),
                         ),
                         const Divider(),
                         ListTile(
                           title: const Text(
-                            'Password',
-                            style: TextStyle(fontFamily: 'Poppins'),
+                            'Edit Password',
+                            style:
+                                TextStyle(fontFamily: 'Poppins', fontSize: 16),
                           ),
-                          subtitle: const Text('**********'),
                           trailing: IconButton(
                             icon: const Icon(Icons.edit_square),
                             onPressed: () {
-                              // Implement code to change password
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const EditPassword()));
+                            },
+                          ),
+                        ),
+                        const Divider(),
+                        ListTile(
+                          title: const Text(
+                            'View Logs',
+                            style:
+                                TextStyle(fontFamily: 'Poppins', fontSize: 16),
+                          ),
+                          trailing: IconButton(
+                            icon: const Icon(Icons.data_exploration),
+                            onPressed: () {
+                              // ari mag butang sa logic pag view sa logs
+                            },
+                          ),
+                        ),
+                        const Divider(),
+                        ListTile(
+                          title: const Text(
+                            'Log out',
+                            style:
+                                TextStyle(fontFamily: 'Poppins', fontSize: 16),
+                          ),
+                          trailing: IconButton(
+                            icon: const Icon(Icons.logout),
+                            onPressed: () {
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    title: const Text(
+                                      'Logout Account?',
+                                      style: TextStyle(
+                                          color: Color(0xFF0047FF),
+                                          fontFamily: 'Poppins',
+                                          fontSize: 16),
+                                    ),
+                                    content: const Text(
+                                        'Are you sure you want to log out?'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () {
+                                          setState(() {
+                                            isEditProfile = false;
+                                          });
+                                          Navigator.pop(context);
+                                        },
+                                        child: const Text('Cancel'),
+                                      ),
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    LoginPage(),
+                                              ));
+                                        },
+                                        child: const Text('Continue'),
+                                      )
+                                    ],
+                                  );
+                                },
+                              );
                             },
                           ),
                         ),
                       ],
                     ),
                   ),
-
                   const SizedBox(height: 50),
-
-                  ElevatedButton(
-                    onPressed: () {
-                      _logout(context);
-                    },
-                    style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(horizontal: 40),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      backgroundColor: const Color(0xFF0047FF),
-                    ),
-                    child: const Text(
-                      'Logout',
-                      style: TextStyle(
-                        fontSize: 25,
-                        fontFamily: 'Poppins',
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
                 ],
               ),
             ),

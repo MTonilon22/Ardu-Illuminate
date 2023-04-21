@@ -47,7 +47,7 @@ class _MyAppState extends State<MyApp> {
                 ),
               ],
             ),
-            duration: 3000,
+            duration: 1000,
             splashTransition: SplashTransition.sizeTransition,
             nextScreen: LoginPage(),
           );
