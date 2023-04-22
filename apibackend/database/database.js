@@ -4,7 +4,7 @@ const mysqlConnection = mysql.createConnection({
 
     host: 'localhost',
     user: 'root',
-    password: 'Jeremy123',
+    password: 'mtonilon',
     database: 'ardudb',
     debug: false,
     port: 3306,
@@ -14,7 +14,7 @@ const mysqlConnection = mysql.createConnection({
 mysqlConnection.connect(function (error){
 
     if(error){
-        console.error('error connecting: ' + err.stack);
+        console.error('error connecting: ' + error.stack);
         return;
     }else{
         console.log('Database is connected');

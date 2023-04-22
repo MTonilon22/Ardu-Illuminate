@@ -3,15 +3,15 @@ import 'package:ardu_illuminate/Socket/webSocket.dart';
 import 'package:flutter/material.dart';
 import 'package:duration_picker/duration_picker.dart';
 
-class FourthScreen extends StatefulWidget {
-  const FourthScreen({Key? key}) : super(key: key);
+class TimerPage extends StatefulWidget {
+  const TimerPage({Key? key}) : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api
-  _FourthScreenState createState() => _FourthScreenState();
+  _TimerPageState createState() => _TimerPageState();
 }
 
-class _FourthScreenState extends State<FourthScreen> {
+class _TimerPageState extends State<TimerPage> {
   Duration _picked = const Duration(hours: 0, minutes: 0);
   Timer? countdownTimer;
   bool isStarted = false;

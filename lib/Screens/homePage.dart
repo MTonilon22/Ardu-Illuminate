@@ -18,8 +18,8 @@ class _HomePageState extends State<HomePage> {
 
   final List<Widget> _widgetOptions = [
     const MainPage(),
-    const FourthScreen(),
-    const FifthScreen(),
+    const TimerPage(),
+    const PowerMeterPage(),
     const SettingsPage(),
   ];
 

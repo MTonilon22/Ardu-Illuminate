@@ -24,18 +24,46 @@ userModel.addUser = (newUser, result) => {
     });
 }
 
+userModel.getAll = (user_id,result) => {
 
-    // userModel.addUser = (newUser) => {
+    let query = "SELECT * FROM users";
 
-    //     const {id, name, birthdate, email,username,password} = newUser;
-    //     const query = 'INSERT INTO users (user_id, name, birthdate, email, username, password) VALUES (?,?,?,?,?,?)'
-    //     db_con.query(query, [id,name,birthdate,email,username,password], (err, result) => {
-    //         if(err) throw err
-    //         console.log('Succesfully inserted user data');
-    //    })
-       
-    // return id;
-    // }
+    if(user_id){
+        query += `WHERE user_id LIKE '%${user_id}%'`;
+    }
+    db_con.query(query, (err,res) => {
+        if(err){
+            console.log("error: ", err);
+            result(null,err);
+            return;
+        }
+        console.log("Users: ", res);
+        return(null, err);
+    });
+};
+
+userModel.updateById = (user_id, user, result) => {
+
+    db_con.query(
+        "UPDATE users SET name = ?, birthdate = ?, email = ?, username = ?, password = ? WHERE user_id = ?",
+        [user.name, user.birthdate, user.email, user.username, user.password, user_id],
+        (err,res) => {
+            if(err){
+                console.log("error: ", err);
+                result(null, err);
+                return;
+            }
+
+            if(res.affectedRows == 0) {
+                result({kind: "not_found"}, null);
+                return;
+            }
+            console.log("updated tasl: ", {user_id: user_id, ...user});
+            result(null, {user_id: user_id, ...user});
+        }
+    );
+}
+
 
 
 
