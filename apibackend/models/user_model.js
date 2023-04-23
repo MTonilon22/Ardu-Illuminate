@@ -1,4 +1,4 @@
-const db_con = require("../src/database/database");
+const db_con = require("../database/database");
 
 
 const userModel = function(user){

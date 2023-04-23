@@ -1,3 +1,4 @@
+// This is the main light control screen
 import 'package:flutter/material.dart';
 import 'package:ardu_illuminate/Socket/webSocket.dart';
 
@@ -14,8 +15,6 @@ class _MainPageScreenState extends State<MainPage> {
   Color activeColor = Colors.green;
   double _currentSliderValue = 20;
   bool ledstatus = false;
-
-  
 
   late Websocket ws = Websocket();
 
@@ -66,31 +65,80 @@ class _MainPageScreenState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            const Text(
-              'Main Light',
-              textAlign: TextAlign.left,
-            ),
-            Switch(
-              thumbIcon: thumbIcon,
-              value: light1,
-              inactiveThumbColor: Colors.red,
-              activeColor: activeColor,
-              onChanged: _onPressed,
-            ),
-            const Text(
-              'Light Intensity',
-            ),
-            Slider(
-              value: _currentSliderValue,
-              max: 100,
-              divisions: 100,
-              label: _currentSliderValue.round().toString(),
-              onChanged: _onSliderChanged,
-            ),
-          ],
+      body: Padding(
+        padding: const EdgeInsets.all(30),
+        child: SafeArea(
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 10,
+              ),
+              const Center(
+                child: Text(
+                  'Main Light Control',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontFamily: 'Poppins',
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              const SizedBox(height: 150),
+              const Center(
+                child: Text(
+                  'Power',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontFamily: 'Poppins',
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              const SizedBox(height: 15),
+              Transform.scale(
+                scale: 1.5,
+                child: Switch(
+                  thumbIcon: thumbIcon,
+                  value: light1,
+                  inactiveThumbColor: Colors.red,
+                  activeColor: activeColor,
+                  onChanged: _onPressed,
+                ),
+              ),
+              const SizedBox(
+                height: 50,
+              ),
+              const Center(
+                child: Text(
+                  'Light Intensity',
+                  style: TextStyle(
+                    fontFamily: 'Poppins',
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              Row(
+                children: [
+                  const Icon(Icons.dark_mode_outlined),
+                  Expanded(
+                    child: Slider(
+                      value: _currentSliderValue,
+                      max: 100,
+                      divisions: 100,
+                      label: _currentSliderValue.round().toString(),
+                      onChanged: _onSliderChanged,
+                    ),
+                  ),
+                  const Icon(Icons.sunny),
+                ],
+              ),
+              const Spacer(),
+            ],
+          ),
         ),
       ),
     );

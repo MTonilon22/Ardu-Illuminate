@@ -1,5 +1,5 @@
 const express = require('express')
-const userModel = require('../models/user_model')
+const userModel = require('../../models/user_model')
 const app = express()
 
 app.post('/api/user/oten', (req,res) => {
