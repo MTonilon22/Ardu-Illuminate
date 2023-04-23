@@ -11,7 +11,7 @@ const userModel = function(user){
 };
 
 
-userModel.addUser = (newUser, result) => {
+userModel.create = (newUser, result) => {
     db_con.query("INSERT INTO users SET ?", newUser, (err,res) => {
             if(err){
                 console.log("error: ", err);
@@ -65,7 +65,22 @@ userModel.updateById = (user_id, user, result) => {
 }
 
 
+userModel.remove = (user_id, result) => {
+    db_con.query("DELETE FROM users WHERE user_id =?", user_id, (err,res) => {
+        if(err){
 
+            console.log("error: ", err);
+            result(null,err);
+            return;
+        }
+        if(res.affectedRows == 0){
+            result({kind: "not found"}, null);
+            return;
+        }
+        console.log("deleted task with id: " , id);
+        result(null,res);
+    })
+}
 
 
     module.exports = userModel

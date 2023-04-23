@@ -1,7 +1,9 @@
 const express = require('express');
 const app = express();
 
-const userPost = require('./post/user')
+
+const userPost = require('./http/post/user_post')
+const userRoutes = require('../apibackend/routes/user_routes')
 //settings
 app.set('port', process.env.PORT || 8000);
 
@@ -10,7 +12,7 @@ app.use(express.json());
 
 //Routes
 
-app.use("/",userPost)
+app.use("/",userRoutes)
 
 app.get('/', (req,res) => {
     res.send({"message": "welcome", })
